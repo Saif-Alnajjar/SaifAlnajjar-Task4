@@ -73,3 +73,21 @@ signupForm.addEventListener('submit', (e) => {
         alert("Please agree to the terms and policy.");
     }
 });
+
+function nextStep(stepNumber) {
+    // إخفاء كل الخطوات
+    document.querySelectorAll('.onboarding-step').forEach(step => {
+        step.classList.remove('active');
+    });
+    
+    // إظهار الخطوة المطلوبة
+    document.getElementById('step' + stepNumber).classList.add('active');
+}
+
+function closeOnboarding() {
+    // إخفاء الواجهة بالكامل عند الانتهاء أو الضغط على Skip
+    document.getElementById('onboarding-overlay').style.display = 'none';
+    
+    // توجيه المستخدم لصفحة الـ Dashboard الأساسية
+    window.location.href = 'my-path.html';
+}
