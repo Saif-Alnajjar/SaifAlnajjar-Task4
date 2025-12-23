@@ -149,3 +149,28 @@ function hideSubPage() {
     document.getElementById('subPageView').style.display = 'none';
     document.getElementById('mainProfileView').style.display = 'block';
 }
+
+// دالة التحويل لصفحة تسجيل الدخول
+document.querySelectorAll('.btn-login, .btn-primary').forEach(button => {
+    button.onclick = function(e) {
+        if(this.getAttribute('href') === 'auth.html') {
+            window.location.href = 'auth.html';
+        }
+    };
+});
+
+// محاكاة عملية تسجيل الدخول في صفحة auth.html
+function handleLogin(event) {
+    event.preventDefault();
+    
+    // إظهار شاشة التحميل (اللودر)
+    const loader = document.createElement('div');
+    loader.className = 'full-page-loader';
+    loader.innerHTML = '<div class="spinner"></div><p>جاري الدخول إلى حسابك...</p>';
+    document.body.appendChild(loader);
+
+    // بعد ثانيتين يتم التوجيه للصفحة الداخلية
+    setTimeout(() => {
+        window.location.href = 'home-logged-in.html';
+    }, 2000);
+}
