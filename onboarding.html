@@ -1,0 +1,53 @@
+<div id="onboarding-overlay">
+    <div class="onboarding-card">
+        <div class="onboarding-step active" id="step1">
+            <div class="onboarding-img">
+                <img src="images/onboarding-ai.png" alt="AI Path">
+            </div>
+            <h2>Learning Path AI</h2>
+            <p>Personalized learning paths powered by artificial intelligence to match your goals and pace.</p>
+            <div class="dots-indicator">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="onboarding-footer">
+                <button class="btn-next" onclick="nextStep(2)">Next</button>
+                <button class="btn-skip" onclick="closeOnboarding()">Skip</button>
+            </div>
+        </div>
+
+        <div class="onboarding-step" id="step2">
+            <div class="onboarding-img">
+                <img src="images/onboarding-reminders.png" alt="Reminders">
+            </div>
+            <h2>Smart Reminders</h2>
+            <p>Never miss a class or deadline with intelligent notifications tailored to your schedule.</p>
+            <div class="dots-indicator">
+                <span class="dot"></span>
+                <span class="dot active"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="onboarding-footer">
+                <button class="btn-next" onclick="nextStep(3)">Next</button>
+                <button class="btn-skip" onclick="closeOnboarding()">Skip</button>
+            </div>
+        </div>
+
+        <div class="onboarding-step" id="step3">
+            <div class="onboarding-img">
+                <img src="images/onboarding-rec.png" alt="Recommendations">
+            </div>
+            <h2>Smart Recommendations</h2>
+            <p>Discover courses and content recommendations based on your learning progress and interests.</p>
+            <div class="dots-indicator">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot active"></span>
+            </div>
+            <div class="onboarding-footer">
+                <button class="btn-next btn-finish" onclick="closeOnboarding()">Get Started</button>
+            </div>
+        </div>
+    </div>
+</div>
