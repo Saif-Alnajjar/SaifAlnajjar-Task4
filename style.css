@@ -1275,3 +1275,42 @@ body {
     color: var(--primary-navy) !important;
 }
 
+/* تنسيق حقول الاسم بجانب بعضها */
+.input-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.input-row .input-group {
+    flex: 1;
+}
+
+/* تنسيق خانة الموافقة على الشروط */
+.policy-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #718096;
+    text-align: left;
+}
+
+.policy-check input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* تحسين شكل المدخلات لتطابق الصورة */
+.auth-box input {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition: border-color 0.2s;
+}
+
+.auth-box input:focus {
+    border-color: var(--primary-navy);
+    outline: none;
+}
