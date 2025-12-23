@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - Home</title>
+    <title>Shifra - Online Learning Platform</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
     <header class="main-header">
         <nav class="navbar container">
             <div class="logo">shifra</div>
             
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="courses-info.html">الكورسات</a></li>
-                <li><a href="path-info.html">مساري</a></li>
-                <li><a href="about.html">عن شفرة</a></li>
-                <li><a href="contact.html">تواصل معنا</a></li>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="courses-info.html">Courses</a></li>
+                <li><a href="path-info.html">My Path</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
 
-            <div class="auth-buttons">
-                <a href="auth.html" class="btn-login">تسجيل دخول</a>
+            <div class="header-auth">
+                <a href="auth.html" class="btn-login">Login</a>
+                <a href="auth.html" class="btn-primary">Sign Up</a>
             </div>
 
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
 
-    <section class="hero-section container">
+    <main class="hero-section container">
         <div class="hero-content">
-            <h1>تعلم البرمجة بذكاء مع شفرة</h1>
-            <p>منصتك التعليمية المتكاملة لبناء مسارك المهني في عالم التقنية.</p>
-            <div class="hero-btns">
-                <a href="auth.html" class="btn-primary">ابدأ الآن مجاناً</a>
-                <a href="courses-info.html" class="btn-secondary">استكشف الكورسات</a>
+            <h1>Master Coding with Shifra AI</h1>
+            <p>Your personalized path to becoming a professional developer. Join thousands of students learning today.</p>
+            <div class="hero-actions">
+                <a href="auth.html" class="btn-cta">Get Started Free</a>
+                <a href="courses-info.html" class="btn-secondary">View Courses</a>
             </div>
         </div>
-    </section>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/500x400" alt="Learning Dashboard">
+        </div>
+    </main>
 
-    <script src="script.js"></script>
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="explore.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Explore</span>
+        </a>
+        <a href="my-path.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>My Path</span>
+        </a>
+        <a href="notifications.html" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <script>
+        // دالة لفتح المنيو في الجوال
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('show');
+        }
+    </script>
 </body>
 </html>
