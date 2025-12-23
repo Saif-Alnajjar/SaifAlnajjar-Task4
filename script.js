@@ -105,3 +105,32 @@ document.getElementById('backToLogin').addEventListener('click', function(e) {
     document.getElementById('forgotPasswordBox').style.display = 'none';
     document.getElementById('loginBox').style.display = 'block';
 });
+
+// فتح وإغلاق واجهة الفلترة (التي في النص)
+const openBtn = document.getElementById('openFilter');
+const closeBtn = document.getElementById('closeFilter');
+const overlay = document.getElementById('filterOverlay');
+
+openBtn.onclick = () => overlay.classList.add('open');
+closeBtn.onclick = () => overlay.classList.remove('open');
+
+// إغلاق عند الضغط خارج المربع
+window.onclick = (event) => {
+    if (event.target == overlay) overlay.classList.remove('open');
+}
+
+// دالة بسيطة للربط بين الصفحات
+function goToDetails() {
+    window.location.href = 'course-details.html';
+}
+
+function goToRegistration() {
+    // نتحقق أولاً إذا كان المستخدم مسجل دخول (افتراضياً هنا نعم)
+    const isLoggedIn = true; 
+    
+    if(isLoggedIn) {
+        window.location.href = 'registration.html';
+    } else {
+        window.location.href = 'auth.html';
+    }
+}
