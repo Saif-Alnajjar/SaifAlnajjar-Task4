@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="logged-in-body">
+
+    <header class="main-header">
+        <nav class="navbar container">
+            <div class="logo">shifra</div>
+            <div class="header-right">
+                <i class="far fa-bell icon-btn"></i>
+                <div class="user-avatar-circle">S</div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container dashboard-main">
+        <section class="welcome-section">
+            <h1>Welcome back, Sarah!</h1>
+            <p>You have 2 classes today. Keep up the great work!</p>
+        </section>
+
+        <section class="current-course-card">
+            <div class="course-info-inline">
+                <div class="course-icon-bg">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="course-text">
+                    <h3>Advanced React Development</h3>
+                    <p>Next lesson: Components & Props</p>
+                </div>
+                <div class="progress-circle-mini">
+                    <span class="perc">35%</span>
+                </div>
+            </div>
+            <button class="btn-continue-learning">Continue Learning <i class="fas fa-arrow-right"></i></button>
+        </section>
+
+        <div class="quick-stats">
+            <div class="q-stat">
+                <strong>4</strong>
+                <span>Courses</span>
+            </div>
+            <div class="q-stat">
+                <strong>12</strong>
+                <span>Certificates</span>
+            </div>
+            <div class="q-stat">
+                <strong>85%</strong>
+                <span>Avg. Score</span>
+            </div>
+        </div>
+
+        <section class="ai-recommendations">
+            <div class="sec-header">
+                <h2>Recommended for you</h2>
+                <a href="courses.html">See all</a>
+            </div>
+            <div class="recommendation-scroll">
+                <div class="rec-card">
+                    <img src="images/course-ui.jpg" alt="UI Design">
+                    <div class="rec-content">
+                        <h4>UI/UX Design Masterclass</h4>
+                        <div class="rec-meta">
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                            <span>12 Weeks</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rec-card">
+                    <img src="images/course-python.jpg" alt="Python">
+                    <div class="rec-content">
+                        <h4>Python for Data Science</h4>
+                        <div class="rec-meta">
+                            <span><i class="fas fa-star"></i> 4.9</span>
+                            <span>8 Weeks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="home-logged-in.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="courses.html" class="nav-item">
+            <i class="fas fa-book-open"></i>
+            <span>Courses</span>
+        </a>
+        <a href="my-path.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>My Path</span>
+        </a>
+        <a href="notifications.html" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+</body>
+</html>
