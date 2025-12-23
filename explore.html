@@ -1,0 +1,97 @@
+<main class="container explore-main">
+    <header class="explore-header">
+        <h1>Explore</h1>
+        <div class="search-bar-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for courses, mentors...">
+            <button class="filter-btn" id="openFilter"><i class="fas fa-sliders-h"></i></button>
+        </div>
+    </header>
+
+    <section class="categories-section">
+        <div class="section-title">
+            <h2>Categories</h2>
+            <a href="#">See All</a>
+        </div>
+        <div class="category-grid">
+            <div class="cat-item active">
+                <i class="fas fa-laptop-code"></i>
+                <span>Development</span>
+            </div>
+            <div class="cat-item">
+                <i class="fas fa-pen-nib"></i>
+                <span>Design</span>
+            </div>
+            <div class="cat-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Business</span>
+            </div>
+            <div class="cat-item">
+                <i class="fas fa-camera"></i>
+                <span>Photography</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <div class="section-title">
+            <h2>Popular Courses</h2>
+        </div>
+        <div class="course-list-vertical">
+            <div class="course-horizontal-card">
+                <div class="course-img">
+                    <img src="images/course1.jpg" alt="Course">
+                </div>
+                <div class="course-details">
+                    <span class="tag">Bestseller</span>
+                    <h3>Full-stack Web Dev</h3>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> Dr. Adam</span>
+                        <span><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$49.99</span>
+                        <button class="add-fav"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="course-horizontal-card">
+                <img src="images/course2.jpg" alt="Course">
+                <div class="course-details">
+                    <h3>UI/UX Fundamentals</h3>
+                    <div class="meta">
+                        <span><i class="fas fa-user"></i> Sarah J.</span>
+                        <span><i class="fas fa-star"></i> 4.7</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$35.00</span>
+                        <button class="add-fav"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="filter-overlay" id="filterOverlay">
+        <div class="filter-sheet">
+            <div class="sheet-header">
+                <h3>Filter</h3>
+                <button id="closeFilter"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="filter-group">
+                <h4>Sort by</h4>
+                <div class="filter-options">
+                    <button class="opt active">Popular</button>
+                    <button class="opt">Newest</button>
+                    <button class="opt">Price: Low to High</button>
+                </div>
+            </div>
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <input type="range" min="0" max="500" class="price-slider">
+                <div class="price-labels"><span>$0</span><span>$500</span></div>
+            </div>
+            <button class="btn-apply">Apply Filters</button>
+        </div>
+    </div>
+</main>
