@@ -3,78 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - Online Learning Platform</title>
+    <title>Shifra - Training Center</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
+<body class="public-page">
 
-    <header class="main-header">
-        <nav class="navbar container">
+    <header class="desktop-header">
+        <div class="container header-flex">
             <div class="logo">shifra</div>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="courses-info.html">Courses</a></li>
-                <li><a href="path-info.html">My Path</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="header-auth">
-                <a href="auth.html" class="btn-login">Login</a>
-                <a href="auth.html" class="btn-primary">Sign Up</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="courses-public.html">Courses</a></li>
+                    <li><a href="path-public.html">My Path</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-btns">
+                <a href="auth.html" class="link-login">Login</a>
+                <a href="auth.html" class="btn-signup">Sign Up</a>
             </div>
-
-            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <main class="hero-section container">
-        <div class="hero-content">
-            <h1>Master Coding with Shifra AI</h1>
-            <p>Your personalized path to becoming a professional developer. Join thousands of students learning today.</p>
-            <div class="hero-actions">
-                <a href="auth.html" class="btn-cta">Get Started Free</a>
-                <a href="courses-info.html" class="btn-secondary">View Courses</a>
+    <section class="hero-banner">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Learning Path AI</h1>
+                <p>Discover personalized training courses powered by artificial intelligence. Build your skills with expert-led sessions tailored to your career goals.</p>
+                <button class="btn-get-started" onclick="location.href='auth.html'">Get Started</button>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/500x400" alt="Learning Dashboard">
+    </section>
+
+    <section class="container section-padding">
+        <h2 class="section-title">Smart Recommendations</h2>
+        <p class="section-subtitle">Courses recommended just for you</p>
+        
+        <div class="courses-grid">
+            <div class="course-card-wide">
+                <img src="https://via.placeholder.com/300x180" alt="Course">
+                <div class="card-body">
+                    <h3>Advanced React Development</h3>
+                    <p>Master modern React patterns, hooks, and state management.</p>
+                    <div class="card-footer">
+                        <button class="btn-outline">Details</button>
+                        <button class="btn-fill">Book</button>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card-wide">
+                <img src="https://via.placeholder.com/300x180" alt="Course">
+                <div class="card-body">
+                    <h3>Data Science Fundamentals</h3>
+                    <p>Learn Python, statistics, and machine learning for decision making.</p>
+                    <div class="card-footer">
+                        <button class="btn-outline">Details</button>
+                        <button class="btn-fill">Book</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="explore.html" class="nav-item">
-            <i class="fas fa-search"></i>
-            <span>Explore</span>
-        </a>
-        <a href="my-path.html" class="nav-item">
-            <i class="fas fa-route"></i>
-            <span>My Path</span>
-        </a>
-        <a href="notifications.html" class="nav-item">
-            <i class="fas fa-bell"></i>
-            <span>Alerts</span>
-        </a>
-        <a href="profile.html" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
-    </nav>
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo">shifra</div>
+                <p>Empowering your learning journey with AI-driven course recommendations.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">My Learning Path</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-google"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Shifra Training Center. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script>
-        // دالة لفتح المنيو في الجوال
-        function toggleMobileMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('show');
-        }
-    </script>
 </body>
 </html>
