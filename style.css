@@ -2014,89 +2014,84 @@ input:checked + .slider:before { transform: translateX(22px); }
     font-weight: 600;
     margin-top: 20px;
 }
-
-/* --- كود التنسيق الموحد والشامل (يلغي ما قبله) --- */
-
-/* إعادة ضبط الحاويات لضمان التباين */
-html, body {
-    background-color: #f8fafc !important;
-    color: #2d3748 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    direction: rtl !important; /* لدعم واجهة العربي */
+/* تنسيق صفحة الزوار العامة */
+.public-page {
+    background-color: #ffffff !important;
 }
 
-/* توحيد الهيدر ليعمل على الكمبيوتر والجوال */
-.main-header, header {
-    background: #ffffff !important;
-    border-bottom: 1px solid #edf2f7 !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
-    display: block !important;
+.desktop-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* إجبار الهيدر العلوي على الاختفاء في الجوال عند وجود Bottom Nav */
-@media (max-width: 768px) {
-    .nav-links, .desktop-menu {
-        display: none !important;
-    }
-    main {
-        padding-bottom: 80px !important; /* مساحة للـ Bottom Nav */
-    }
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-/* فرض تصميم شريط التنقل السفلي للجوال */
-.bottom-nav {
-    display: flex !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    background: #ffffff !important;
-    height: 70px !important;
-    border-top: 1px solid #edf2f7 !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    z-index: 9999 !important;
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
 }
 
-/* تنسيق الأزرار الموحد (الكحلي من الصور) */
-.btn-login, .btn-primary, .btn-auth-submit, button[type="submit"] {
-    background-color: #2d3e50 !important;
-    color: #ffffff !important;
-    border-radius: 8px !important;
-    border: none !important;
-    padding: 12px 24px !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    display: inline-block !important;
-    width: auto !important;
+.main-nav a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
 }
 
-/* تنسيق حقول الإدخال لتكون واضحة (التباين) */
-input[type="email"], input[type="password"], input[type="text"] {
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    color: #2d3748 !important;
-    padding: 12px !important;
-    border-radius: 8px !important;
-    width: 100% !important;
-    display: block !important;
+.main-nav a.active {
+    color: #2d3e50;
+    border-bottom: 2px solid #2d3e50;
 }
 
-/* إخفاء شريط التنقل السفلي في شاشات الكمبيوتر */
-@media (min-width: 769px) {
-    .bottom-nav {
-        display: none !important;
-    }
+.btn-signup {
+    background: #2d3e50;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 15px;
 }
 
-/* شاشة التحميل (تغطية كاملة) */
-.full-page-loader {
-    background: rgba(255,255,255,0.95) !important;
-    position: fixed !important;
-    z-index: 10000 !important;
-    top: 0; left: 0; width: 100%; height: 100%;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
+/* هيدر البطل (Hero) */
+.hero-banner {
+    background: linear-gradient(rgba(45, 62, 80, 0.1), rgba(45, 62, 80, 0.1)), 
+                url('your-hero-image.jpg') center/cover;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    color: #2d3e50;
+    margin-bottom: 20px;
+}
+
+/* إخفاء شريط التنقل السفلي في هذه الصفحة */
+.public-page .bottom-nav {
+    display: none !important;
+}
+
+/* الفوتر */
+.main-footer {
+    background: #f8fafc;
+    padding: 60px 0 20px;
+    margin-top: 100px;
+    border-top: 1px solid #eee;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
 }
