@@ -323,3 +323,182 @@ body {
     }
     .nav-links { display: none; }
 }
+
+/* ترويسة الصفحة */
+.courses-header {
+    padding: 40px 0 20px;
+}
+
+.courses-header h1 {
+    font-size: 32px;
+    color: var(--primary-navy);
+    margin-bottom: 10px;
+}
+
+.courses-header p {
+    color: var(--text-gray);
+}
+
+/* شريط الفلاتر الرمادي */
+.filters-section {
+    margin-bottom: 40px;
+}
+
+.filters-container {
+    background-color: #f1f3f6; /* لون رمادي فاتح جداً كما في الصورة */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.filter-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* شبكة الكورسات */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-img {
+    position: relative;
+    height: 200px;
+}
+
+.course-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rating-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.rating-tag i {
+    color: #ffc107;
+    font-size: 10px;
+}
+
+.course-content {
+    padding: 20px;
+}
+
+.course-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--primary-navy);
+}
+
+.course-content p {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-bottom: 15px;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tag-label {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.beginner { background-color: #f0f0f0; color: #666; }
+.in-person { background-color: #e3f2fd; color: #1976d2; }
+.online { background-color: #e8f5e9; color: #2e7d32; }
+.advanced { background-color: #fff3e0; color: #f57c00; }
+
+.card-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-details, .btn-book {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-details {
+    background: #f1f3f6;
+    border: none;
+    color: #333;
+}
+
+.btn-book {
+    background: var(--primary-navy);
+    border: none;
+    color: white;
+}
+
+/* التوافق مع الجوال */
+@media (max-width: 992px) {
+    .courses-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .courses-grid { grid-template-columns: 1fr; }
+    .filters-container { flex-direction: column; }
+}
