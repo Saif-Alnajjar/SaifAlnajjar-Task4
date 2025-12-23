@@ -1932,3 +1932,86 @@ input:checked + .slider:before { transform: translateX(22px); }
     color: #2d3e50;
     font-weight: 700;
 }
+
+/* تصميم البروفايل */
+.user-info-card {
+    text-align: center;
+    padding: 30px 0;
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-avatar-large {
+    width: 90px;
+    height: 90px;
+    background: #2d3e50;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 auto 15px;
+}
+
+.user-name { font-size: 20px; color: #2d3e50; margin-bottom: 5px; }
+.user-email { font-size: 14px; color: #718096; margin-bottom: 15px; }
+
+.btn-edit-avatar {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #4a5568;
+    cursor: pointer;
+}
+
+/* قائمة الإعدادات */
+.settings-list {
+    background: #fff;
+    padding: 10px 20px;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+}
+
+.item-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #4a5568;
+}
+
+.item-left i { font-size: 20px; color: #718096; }
+.settings-item.logout { color: #e53e3e; border-bottom: none; }
+.settings-item.logout i { color: #e53e3e; }
+
+/* فورم التعديل */
+.page-header-inline {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.btn-back { background: none; border: none; font-size: 18px; cursor: pointer; }
+.btn-save-settings {
+    width: 100%;
+    padding: 15px;
+    background: #2d3e50;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
