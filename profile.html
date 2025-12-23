@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="mobile-layout">
+
+    <main class="container profile-container">
+        
+        <div id="mainProfileView">
+            <header class="profile-header">
+                <h1 class="header-title">Profile</h1>
+            </header>
+
+            <div class="user-info-card">
+                <div class="profile-avatar-large">S</div>
+                <h2 class="user-name">Sarah Johnson</h2>
+                <p class="user-email">sarah.j@example.com</p>
+                <button class="btn-edit-avatar">Change Photo</button>
+            </div>
+
+            <div class="settings-list">
+                <div class="settings-item" onclick="showSubPage('personalInfo')">
+                    <div class="item-left">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Personal Info</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="settings-item" onclick="showSubPage('security')">
+                    <div class="item-left">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Security</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="settings-item">
+                    <div class="item-left">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="settings-item logout" onclick="location.href='index.html'">
+                    <div class="item-left">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="subPageView" style="display: none;">
+            <header class="page-header-inline">
+                <button class="btn-back" onclick="hideSubPage()"><i class="fas fa-arrow-left"></i></button>
+                <h2 id="subPageTitle">Personal Info</h2>
+            </header>
+
+            <form class="edit-form">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" value="Sarah Johnson">
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" value="sarah.j@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="+1 234 567 890">
+                </div>
+                <button type="button" class="btn-save-settings">Save Changes</button>
+            </form>
+        </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="explore.html" class="nav-item">
+            <i class="fas fa-search"></i>
+            <span>Explore</span>
+        </a>
+        <a href="my-path.html" class="nav-item">
+            <i class="fas fa-route"></i>
+            <span>My Path</span>
+        </a>
+        <a href="notifications.html" class="nav-item">
+            <i class="fas fa-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
