@@ -91,3 +91,17 @@ function closeOnboarding() {
     // توجيه المستخدم لصفحة الـ Dashboard الأساسية
     window.location.href = 'my-path.html';
 }
+
+// الانتقال من تسجيل الدخول إلى نسيان كلمة السر
+document.getElementById('forgotPassLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('loginBox').style.display = 'none';
+    document.getElementById('forgotPasswordBox').style.display = 'block';
+});
+
+// العودة لتسجيل الدخول
+document.getElementById('backToLogin').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('forgotPasswordBox').style.display = 'none';
+    document.getElementById('loginBox').style.display = 'block';
+});
