@@ -1889,3 +1889,46 @@ input:checked + .slider:before { transform: translateX(22px); }
     border-radius: 6px;
     cursor: pointer;
 }
+
+/* تنسيق صفحة الإشعارات */
+.notification-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* لتوسيط المحتوى عمودياً */
+}
+
+.empty-state-card {
+    background: #f8fbff; /* لون خلفية مريح كما في الصورة */
+    padding: 40px 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.empty-title {
+    color: #2d3e50;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.empty-subtitle {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* تنسيق الهيدر البسيط */
+.page-header {
+    padding: 20px;
+    border-bottom: 1px solid #edf2f7;
+    background: #fff;
+}
+
+.header-title {
+    font-size: 18px;
+    color: #2d3e50;
+    font-weight: 700;
+}
