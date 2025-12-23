@@ -2095,3 +2095,69 @@ input:checked + .slider:before { transform: translateX(22px); }
     grid-template-columns: 2fr 1fr 1fr;
     gap: 50px;
 }
+
+/* تنسيق الشريط العلوي الاحترافي */
+.desktop-header {
+    background: #ffffff !important;
+    border-bottom: 2px solid #f1f5f9 !important; /* إطار سفلي خفيف وأنيق */
+    height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    padding: 0 40px !important; /* مساحة جانبية */
+}
+
+.header-flex {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+}
+
+/* ترتيب القائمة بجانب بعضها */
+.nav-links-row {
+    display: flex !important;
+    list-style: none !important;
+    gap: 40px !important; /* مسافة متساوية بين الروابط */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-links-row a {
+    text-decoration: none !important;
+    color: #475569 !important; /* لون رمادي احترافي */
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-links-row a:hover, .nav-links-row a.active {
+    color: #2d3e50 !important; /* اللون الكحلي من صورك */
+    font-weight: 700 !important;
+}
+
+/* أزرار تسجيل الدخول */
+.auth-btns {
+    display: flex !important;
+    gap: 25px !important;
+    align-items: center !important;
+}
+
+.link-login {
+    text-decoration: none !important;
+    color: #2d3e50 !important;
+    font-weight: 600 !important;
+}
+
+.btn-signup {
+    background: #2d3e50 !important;
+    color: #ffffff !important;
+    padding: 10px 24px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 6px rgba(45, 62, 80, 0.1) !important;
+}
