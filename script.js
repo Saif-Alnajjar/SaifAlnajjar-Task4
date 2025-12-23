@@ -58,3 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+const signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', (e) => {
+    const pass = document.getElementById('signupPass').value;
+    const confirm = document.getElementById('confirmPass').value;
+    const agree = document.getElementById('agreeTerms').checked;
+
+    if (pass !== confirm) {
+        e.preventDefault();
+        alert("Passwords do not match!");
+    } else if (!agree) {
+        e.preventDefault();
+        alert("Please agree to the terms and policy.");
+    }
+});
