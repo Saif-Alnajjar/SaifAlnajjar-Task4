@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - All Courses</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="navbar container">
+            <div class="logo">shifra</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="#">My Path</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="login-link">Login</a>
+                <a href="#" class="btn-signup">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="courses-header container">
+        <h1>All Courses</h1>
+        <p>Discover the perfect course to advance your career</p>
+    </section>
+
+    <section class="filters-section container">
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Category</label>
+                <select>
+                    <option>All Category</option>
+                    <option>Development</option>
+                    <option>Design</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Level</label>
+                <select>
+                    <option>All Levels</option>
+                    <option>Beginner</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Format</label>
+                <select>
+                    <option>All Format</option>
+                    <option>Online</option>
+                    <option>In-person</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Sort By</label>
+                <select>
+                    <option>Most Popular</option>
+                    <option>Newest</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-grid-section container">
+        <div class="courses-grid">
+            
+            <div class="course-card">
+                <div class="course-img">
+                    <img src="images/course1.jpg" alt="Course Image">
+                    <span class="rating-tag"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+                <div class="course-content">
+                    <h3>Advanced React Development</h3>
+                    <p>Master modern React patterns, hooks, and state management with hands-on projects.</p>
+                    <div class="course-meta">
+                        <span class="instructor">Dr. Michael Chen</span>
+                        <span class="duration">8 weeks</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-label beginner">Beginner</span>
+                        <span class="tag-label in-person">In-person</span>
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn-details">Details</button>
+                        <button class="btn-book">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="course-img">
+                    <img src="images/course2.jpg" alt="Course Image">
+                    <span class="rating-tag"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+                <div class="course-content">
+                    <h3>Data Science Fundamentals</h3>
+                    <p>Learn Python, statistics, and machine learning for data-driven decision making.</p>
+                    <div class="course-meta">
+                        <span class="instructor">Dr. Michael Chen</span>
+                        <span class="duration">8 weeks</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-label beginner">Beginner</span>
+                        <span class="tag-label online">Online</span>
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn-details">Details</button>
+                        <button class="btn-book">Book</button>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">shifra</div>
+                <p>Empowering your learning journey with AI-driven course recommendations and personalized training paths.</p>
+            </div>
+            <div class="footer-links">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">My Path</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>FOLLOW US</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Shifra Training Center. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
