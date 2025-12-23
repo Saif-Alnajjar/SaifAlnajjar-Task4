@@ -134,3 +134,18 @@ function goToRegistration() {
         window.location.href = 'auth.html';
     }
 }
+
+function showSubPage(pageType) {
+    document.getElementById('mainProfileView').style.display = 'none';
+    const subPage = document.getElementById('subPageView');
+    subPage.style.display = 'block';
+    
+    const title = document.getElementById('subPageTitle');
+    if(pageType === 'personalInfo') title.innerText = 'Personal Info';
+    if(pageType === 'security') title.innerText = 'Security & Password';
+}
+
+function hideSubPage() {
+    document.getElementById('subPageView').style.display = 'none';
+    document.getElementById('mainProfileView').style.display = 'block';
+}
