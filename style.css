@@ -2215,3 +2215,56 @@ input:checked + .slider:before { transform: translateX(22px); }
     .courses-grid { grid-template-columns: 1fr; }
     .filters-bar { grid-template-columns: 1fr 1fr; }
 }
+
+/* تنسيق شريط الفلاتر ليكون في صف واحد */
+.filters-container {
+    display: flex !important; /* فرض المحاذاة الأفقية */
+    justify-content: space-between !important; /* توزيع الفراغات بينهم */
+    align-items: flex-end !important; /* محاذاة العناصر من الأسفل */
+    gap: 15px !important; /* المسافة بين كل فلتر والآخر */
+    background: #f1f7fd !important; /* لون خلفية خفيف مريح */
+    padding: 20px !important;
+    border-radius: 12px !important;
+    margin-bottom: 40px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.filter-group {
+    flex: 1 !important; /* جعل كل الفلاتر تأخذ عرضاً متساوياً */
+    display: flex !important;
+    flex-direction: column !important; /* وضع الليبل فوق القائمة المنسدلة */
+    gap: 8px !important;
+}
+
+.filter-group label {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    margin-right: 5px !important;
+}
+
+.filter-group select {
+    width: 100% !important;
+    padding: 12px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    color: #2d3e50 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: 0.3s !important;
+}
+
+.filter-group select:focus {
+    border-color: #2d3e50 !important;
+    box-shadow: 0 0 0 2px rgba(45, 62, 80, 0.1) !important;
+}
+
+/* لجعل الفلاتر تحت بعض فقط في الشاشات الصغيرة جداً (الجوال) */
+@media (max-width: 768px) {
+    .filters-container {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+}
