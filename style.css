@@ -1,0 +1,325 @@
+/* الألوان والمتغيرات من الصورة */
+:root {
+    --primary-navy: #2d3e50;
+    --text-dark: #333;
+    --text-gray: #777;
+    --bg-light: #f4f7f9;
+    --white: #ffffff;
+    --border-color: #eee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    background: var(--white);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-navy);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: var(--primary-navy);
+    font-weight: 600;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.btn-signup {
+    background: var(--primary-navy);
+    color: var(--white);
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('images/hero-bg.jpg') center/cover no-repeat;
+    height: 450px;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(255, 255, 255, 0.4); /* شفافية خفيفة كما في الصورة */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    color: var(--primary-navy);
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin-bottom: 25px;
+}
+
+.btn-get-started {
+    background: var(--primary-navy);
+    color: var(--white);
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Section Common */
+.section {
+    padding: 60px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    color: var(--primary-navy);
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: var(--text-gray);
+    font-size: 15px;
+}
+
+/* Course Cards */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.course-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
+
+.course-img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.course-body {
+    padding: 20px;
+}
+
+.course-body h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    height: 50px; /* لتوحيد الارتفاع */
+}
+
+.course-body p {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+    height: 65px;
+}
+
+.card-footer {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-details, .btn-book {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.btn-details {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+}
+
+.btn-book {
+    background: var(--primary-navy);
+    border: none;
+    color: var(--white);
+}
+
+/* Quick Access Cards */
+.quick-access {
+    background-color: var(--bg-light);
+}
+
+.access-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.access-card {
+    background: var(--white);
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.access-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.blue-bg { background-color: #7da0ca; }
+.dark-bg { background-color: var(--primary-navy); }
+.light-blue-bg { background-color: #a3b9d5; }
+
+.access-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.access-card p {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* Footer */
+.main-footer {
+    padding: 60px 0 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+.footer-brand p {
+    max-width: 300px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.footer-links h4, .footer-social h4 {
+    font-size: 13px;
+    margin-bottom: 20px;
+    color: var(--text-gray);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--primary-navy);
+    font-size: 18px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .course-grid, .access-grid, .footer-content {
+        grid-template-columns: 1fr;
+    }
+    .nav-links { display: none; }
+}
