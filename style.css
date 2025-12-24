@@ -2268,3 +2268,73 @@ input:checked + .slider:before { transform: translateX(22px); }
         gap: 20px !important;
     }
 }
+
+/* تنسيق قسم التوصيات (3 كروت جنب بعض) */
+.courses-grid-home {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* 3 أعمدة */
+    gap: 25px !important;
+    margin-top: 30px !important;
+}
+
+.course-card-wide {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+.card-footer-btns {
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 15px !important;
+}
+
+/* تنسيق قسم Quick Access */
+.quick-access-section {
+    padding: 60px 0 !important;
+    text-align: center !important;
+}
+
+.quick-access-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 30px !important;
+    margin-top: 40px !important;
+}
+
+.qa-item {
+    padding: 30px !important;
+    background: #ffffff !important;
+    border-radius: 15px !important;
+    border: 1px solid #f1f5f9 !important;
+    transition: 0.3s !important;
+}
+
+.qa-item:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05) !important;
+    transform: translateY(-5px) !important;
+}
+
+.qa-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: #f0f7ff !important;
+    color: #2d3e50 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 24px !important;
+    margin: 0 auto 20px !important;
+}
+
+.qa-item h3 { font-size: 18px !important; color: #2d3e50 !important; margin-bottom: 10px !important; }
+.qa-item p { font-size: 14px !important; color: #718096 !important; line-height: 1.5 !important; }
+
+/* للهواتف: يتحول لعمود واحد */
+@media (max-width: 900px) {
+    .courses-grid-home, .quick-access-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
