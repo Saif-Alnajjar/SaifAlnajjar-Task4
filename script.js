@@ -1,102 +1,85 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Elements Selection
+    // Elements
     const loginSection = document.getElementById('loginSection');
     const signupSection = document.getElementById('signupSection');
     const forgotSection = document.getElementById('forgotSection');
 
+    // Navigation Links
     const toSignup = document.getElementById('toSignup');
     const toLogin = document.getElementById('toLogin');
     const toForgot = document.getElementById('toForgot');
     const backToLogin = document.getElementById('backToLogin');
 
-    // --- Navigation Logic ---
+    // Navigation Logic (Switching Views)
+    if (toSignup) toSignup.onclick = (e) => { e.preventDefault(); loginSection.style.display = 'none'; signupSection.style.display = 'block'; };
+    if (toLogin) toLogin.onclick = (e) => { e.preventDefault(); signupSection.style.display = 'none'; loginSection.style.display = 'block'; };
+    if (toForgot) toForgot.onclick = (e) => { e.preventDefault(); loginSection.style.display = 'none'; forgotSection.style.display = 'block'; };
+    if (backToLogin) backToLogin.onclick = (e) => { e.preventDefault(); forgotSection.style.display = 'none'; loginSection.style.display = 'block'; };
 
-    if (toSignup) {
-        toSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginSection.style.display = 'none';
-            signupSection.style.display = 'block';
-        });
-    }
-
-    if (toLogin) {
-        toLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            signupSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        });
-    }
-
-    if (toForgot) {
-        toForgot.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginSection.style.display = 'none';
-            forgotSection.style.display = 'block';
-        });
-    }
-
-    if (backToLogin) {
-        backToLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            forgotSection.style.display = 'none';
-            signupSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        });
-    }
-
-    // --- Form Submission Logic ---
-
-    // Login Form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = loginForm.querySelector('button');
-            btn.innerHTML = 'Logging in...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                window.location.href = 'home-logged-in.html';
-            }, 1000);
-        });
-    }
-
-    // Signup Form
+    // --- 1. SIGN UP LOGIC (Actually saving data) ---
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
+        signupForm.onsubmit = function(e) {
             e.preventDefault();
-            const btn = signupForm.querySelector('button');
-            btn.innerHTML = 'Creating...';
-            btn.disabled = true;
+            const name = signupForm.querySelector('input[type="text"]').value;
+            const email = signupForm.querySelector('input[type="email"]').value;
+            const password = signupForm.querySelector('input[type="password"]').value;
 
-            setTimeout(() => {
-                alert('Account created successfully!');
-                signupSection.style.display = 'none';
-                loginSection.style.display = 'block';
-                btn.innerHTML = 'Sign Up';
-                btn.disabled = false;
-            }, 1500);
-        });
+            // Store in LocalStorage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+            localStorage.setItem('userName', name);
+
+            alert('Account created successfully for ' + name + '! You can now login.');
+            signupSection.style.display = 'none';
+            loginSection.style.display = 'block';
+        };
     }
 
-    // Forgot Password Form
+    // --- 2. LOGIN LOGIC (Checking against saved data) ---
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.onsubmit = function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('loginEmail').value;
+            const passInput = document.getElementById('loginPass').value;
+
+            // Get data from LocalStorage
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedPass = localStorage.getItem('userPassword');
+
+            // Hardcoded "Master Account" (Optional: you can use this too)
+            const masterEmail = "admin@shifra.com";
+            const masterPass = "123456";
+
+            if ((emailInput === storedEmail && passInput === storedPass) || (emailInput === masterEmail && passInput === masterPass)) {
+                const btn = loginForm.querySelector('button');
+                btn.innerHTML = 'Verifying...';
+                setTimeout(() => {
+                    window.location.href = 'home-logged-in.html';
+                }, 1000);
+            } else {
+                alert('Invalid Email or Password. Please try again or create a new account.');
+            }
+        };
+    }
+
+    // --- 3. FORGOT PASSWORD LOGIC ---
     const forgotForm = document.getElementById('forgotForm');
     if (forgotForm) {
-        forgotForm.addEventListener('submit', function(e) {
+        forgotForm.onsubmit = function(e) {
             e.preventDefault();
-            const btn = forgotForm.querySelector('button');
-            btn.innerHTML = 'Sending...';
-            btn.disabled = true;
+            const email = forgotForm.querySelector('input').value;
+            const storedEmail = localStorage.getItem('userEmail');
 
-            setTimeout(() => {
-                alert('A reset link has been sent to your email.');
+            if (email === storedEmail || email === "admin@shifra.com") {
+                alert('Reset link sent to: ' + email);
                 forgotSection.style.display = 'none';
                 loginSection.style.display = 'block';
-                btn.innerHTML = 'Send Reset Link';
-                btn.disabled = false;
-            }, 1500);
-        });
+            } else {
+                alert('Email not found in our records.');
+            }
+        };
     }
 });
