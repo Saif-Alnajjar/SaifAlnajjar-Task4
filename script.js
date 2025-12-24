@@ -174,3 +174,28 @@ function handleLogin(event) {
         window.location.href = 'home-logged-in.html';
     }, 2000);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // منع الصفحة من التحديث التلقائي
+
+            // 1. إظهار شاشة التحميل (التي صممناها سابقاً)
+            const loader = document.createElement('div');
+            loader.className = 'full-page-loader';
+            loader.innerHTML = `
+                <div class="spinner"></div>
+                <p style="margin-top:15px; font-family:sans-serif; color:#2d3e50;">Logging in...</p>
+            `;
+            document.body.appendChild(loader);
+
+            // 2. التوجيه لداخل الموقع بعد 2 ثانية (محاكاة للواقع)
+            setTimeout(() => {
+                // تأكدي أن اسم الملف هنا هو نفس اسم ملف الصفحة الرئيسية للمسجلين
+                window.location.href = 'home-logged-in.html'; 
+            }, 2000);
+        });
+    }
+});
