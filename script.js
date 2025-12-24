@@ -1,23 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- 1. SIGN UP LOGIC ---
+    // 1. SIGN UP LOGIC
     const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const signupBtn = signupForm.querySelector('button[type="submit"]');
-            signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
-            signupBtn.disabled = true;
+            if (signupBtn) {
+                signupBtn.innerHTML = 'Creating Account...';
+                signupBtn.disabled = true;
+            }
 
-            // Simulate server delay then redirect to login
             setTimeout(() => {
                 window.location.href = 'auth.html'; 
             }, 1500);
         });
     }
 
-    // --- 2. LOGIN LOGIC ---
+    // 2. LOGIN LOGIC
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
@@ -28,18 +29,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (emailField && passField) {
                 const loginBtn = loginForm.querySelector('button[type="submit"]');
-                loginBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Loading...';
-                loginBtn.disabled = true;
+                if (loginBtn) {
+                    loginBtn.innerHTML = 'Logging in...';
+                    loginBtn.disabled = true;
+                }
 
-                // Move to the internal student dashboard
+                // IMPORTANT: This now matches your file name exactly
                 setTimeout(() => {
-                    window.location.href = 'home-in.html'; 
-                }, 1200);
+                    window.location.href = 'home-logged-in.html'; 
+                }, 1000);
             }
         });
     }
 
-    // --- 3. LOGOUT LOGIC (Optional) ---
+    // 3. LOGOUT LOGIC
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function(e) {
