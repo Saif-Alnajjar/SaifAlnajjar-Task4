@@ -24,6 +24,9 @@
                         <label>Password</label>
                         <input type="password" id="loginPass" placeholder="Enter your password" required>
                     </div>
+                    <div style="text-align: right; margin-bottom: 15px;">
+                        <a href="#" id="toForgot" style="font-size: 13px; color: #64748b; text-decoration: none;">Forgot password?</a>
+                    </div>
                     <button type="submit" class="btn-auth-primary">Login</button>
                 </form>
                 <p class="auth-footer">Don't have an account? <a href="#" id="toSignup">Sign up here</a></p>
@@ -47,6 +50,19 @@
                     <button type="submit" class="btn-auth-primary">Sign Up</button>
                 </form>
                 <p class="auth-footer">Already have an account? <a href="#" id="toLogin">Login here</a></p>
+            </div>
+
+            <div id="forgotSection" style="display: none;">
+                <h2 class="auth-title">Reset Password</h2>
+                <p style="font-size: 14px; color: #64748b; margin-bottom: 20px;">Enter your email to receive a reset link.</p>
+                <form id="forgotForm">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="btn-auth-primary">Send Reset Link</button>
+                </form>
+                <p class="auth-footer"><a href="#" id="backToLogin">Back to Login</a></p>
             </div>
         </div>
     </div>
