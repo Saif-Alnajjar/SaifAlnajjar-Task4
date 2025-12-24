@@ -2446,3 +2446,23 @@ input:checked + .slider:before { transform: translateX(22px); }
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* ضبط حجم شعار الهيكساجون (السداسي) */
+.auth-logo-icon img {
+    width: 70px !important; /* جربي 70 أو 80 بكسل لتناسب الصورة */
+    height: auto !important;
+    margin: 0 auto 15px auto !important;
+    display: block !important;
+}
+
+/* ضبط حجم أيقونات التواصل الاجتماعي إذا كنتِ تستخدمين صوراً داخل الأزرار */
+.social-btn img {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 10px !important;
+    vertical-align: middle !important;
+}
+
+/* تعديل المسافات لتقريب الكلام من اللوجو */
+.auth-heading {
+    margin-top: 0 !important;
+}
