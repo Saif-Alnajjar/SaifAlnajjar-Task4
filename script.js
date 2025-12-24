@@ -1,208 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // تفاعل أزرار الحجز
-    const bookButtons = document.querySelectorAll('.btn-book');
-    bookButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('Redirecting to booking page...');
-        });
-    });
-
-    // تفاعل أزرار التفاصيل
-    const detailButtons = document.querySelectorAll('.btn-details');
-    detailButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('Loading course details...');
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const loginBox = document.getElementById('loginBox');
-    const signupBox = document.getElementById('signupBox');
-    
-    const toSignup = document.getElementById('toSignup');
-    const toLogin = document.getElementById('toLogin');
-    const headerSignupBtn = document.getElementById('headerSignupBtn');
-
-    // التبديل إلى واجهة الاشتراك
-    toSignup.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginBox.style.display = 'none';
-        signupBox.style.display = 'block';
-    });
-
-    headerSignupBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginBox.style.display = 'none';
-        signupBox.style.display = 'block';
-    });
-
-    // التبديل إلى واجهة الدخول
-    toLogin.addEventListener('click', (e) => {
-        e.preventDefault();
-        signupBox.style.display = 'none';
-        loginBox.style.display = 'block';
-    });
-
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const pass = document.getElementById('loginPass').value;
-
-        if(email && pass) {
-            const submitBtn = loginForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.innerHTML = 'Processing...';
-                submitBtn.disabled = true;
-            }
-
-            setTimeout(() => {
-                window.location.href = 'home-in.html'; 
-            }, 1000);
-        }
-    });
-}
-
-
-const signupForm = document.getElementById('signupForm');
-signupForm.addEventListener('submit', (e) => {
-    const pass = document.getElementById('signupPass').value;
-    const confirm = document.getElementById('confirmPass').value;
-    const agree = document.getElementById('agreeTerms').checked;
-
-    if (pass !== confirm) {
-        e.preventDefault();
-        alert("Passwords do not match!");
-    } else if (!agree) {
-        e.preventDefault();
-        alert("Please agree to the terms and policy.");
-    }
-});
-
-function nextStep(stepNumber) {
-    // إخفاء كل الخطوات
-    document.querySelectorAll('.onboarding-step').forEach(step => {
-        step.classList.remove('active');
-    });
-    
-    // إظهار الخطوة المطلوبة
-    document.getElementById('step' + stepNumber).classList.add('active');
-}
-
-function closeOnboarding() {
-    // إخفاء الواجهة بالكامل عند الانتهاء أو الضغط على Skip
-    document.getElementById('onboarding-overlay').style.display = 'none';
-    
-    // توجيه المستخدم لصفحة الـ Dashboard الأساسية
-    window.location.href = 'my-path.html';
-}
-
-// الانتقال من تسجيل الدخول إلى نسيان كلمة السر
-document.getElementById('forgotPassLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('forgotPasswordBox').style.display = 'block';
-});
-
-// العودة لتسجيل الدخول
-document.getElementById('backToLogin').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('forgotPasswordBox').style.display = 'none';
-    document.getElementById('loginBox').style.display = 'block';
-});
-
-// فتح وإغلاق واجهة الفلترة (التي في النص)
-const openBtn = document.getElementById('openFilter');
-const closeBtn = document.getElementById('closeFilter');
-const overlay = document.getElementById('filterOverlay');
-
-openBtn.onclick = () => overlay.classList.add('open');
-closeBtn.onclick = () => overlay.classList.remove('open');
-
-// إغلاق عند الضغط خارج المربع
-window.onclick = (event) => {
-    if (event.target == overlay) overlay.classList.remove('open');
-}
-
-// دالة بسيطة للربط بين الصفحات
-function goToDetails() {
-    window.location.href = 'course-details.html';
-}
-
-function goToRegistration() {
-    // نتحقق أولاً إذا كان المستخدم مسجل دخول (افتراضياً هنا نعم)
-    const isLoggedIn = true; 
-    
-    if(isLoggedIn) {
-        window.location.href = 'registration.html';
-    } else {
-        window.location.href = 'auth.html';
-    }
-}
-
-function showSubPage(pageType) {
-    document.getElementById('mainProfileView').style.display = 'none';
-    const subPage = document.getElementById('subPageView');
-    subPage.style.display = 'block';
-    
-    const title = document.getElementById('subPageTitle');
-    if(pageType === 'personalInfo') title.innerText = 'Personal Info';
-    if(pageType === 'security') title.innerText = 'Security & Password';
-}
-
-function hideSubPage() {
-    document.getElementById('subPageView').style.display = 'none';
-    document.getElementById('mainProfileView').style.display = 'block';
-}
-
-// دالة التحويل لصفحة تسجيل الدخول
-document.querySelectorAll('.btn-login, .btn-primary').forEach(button => {
-    button.onclick = function(e) {
-        if(this.getAttribute('href') === 'auth.html') {
-            window.location.href = 'auth.html';
-        }
-    };
-});
-
-// محاكاة عملية تسجيل الدخول في صفحة auth.html
-function handleLogin(event) {
-    event.preventDefault();
-    
-    // إظهار شاشة التحميل (اللودر)
-    const loader = document.createElement('div');
-    loader.className = 'full-page-loader';
-    loader.innerHTML = '<div class="spinner"></div><p>جاري الدخول إلى حسابك...</p>';
-    document.body.appendChild(loader);
-
-    // بعد ثانيتين يتم التوجيه للصفحة الداخلية
-    setTimeout(() => {
-        window.location.href = 'home-logged-in.html';
-    }, 2000);
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
+    
+    // --- 1. SIGN UP LOGIC ---
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const signupBtn = signupForm.querySelector('button[type="submit"]');
+            signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+            signupBtn.disabled = true;
 
+            // Simulate server delay then redirect to login
+            setTimeout(() => {
+                window.location.href = 'auth.html'; 
+            }, 1500);
+        });
+    }
+
+    // --- 2. LOGIN LOGIC ---
+    const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // منع الصفحة من التحديث التلقائي
+            e.preventDefault();
 
-            // 1. إظهار شاشة التحميل (التي صممناها سابقاً)
-            const loader = document.createElement('div');
-            loader.className = 'full-page-loader';
-            loader.innerHTML = `
-                <div class="spinner"></div>
-                <p style="margin-top:15px; font-family:sans-serif; color:#2d3e50;">Logging in...</p>
-            `;
-            document.body.appendChild(loader);
+            const emailField = document.getElementById('loginEmail');
+            const passField = document.getElementById('loginPass');
 
-            // 2. التوجيه لداخل الموقع بعد 2 ثانية (محاكاة للواقع)
-            setTimeout(() => {
-                // تأكدي أن اسم الملف هنا هو نفس اسم ملف الصفحة الرئيسية للمسجلين
-                window.location.href = 'home-logged-in.html'; 
-            }, 2000);
+            if (emailField && passField) {
+                const loginBtn = loginForm.querySelector('button[type="submit"]');
+                loginBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Loading...';
+                loginBtn.disabled = true;
+
+                // Move to the internal student dashboard
+                setTimeout(() => {
+                    window.location.href = 'home-in.html'; 
+                }, 1200);
+            }
+        });
+    }
+
+    // --- 3. LOGOUT LOGIC (Optional) ---
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
         });
     }
 });
