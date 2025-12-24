@@ -44,20 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
         loginBox.style.display = 'block';
     });
 
-    // برمجة تسجيل الدخول (تجريبي)
-    const loginForm = document.getElementById('loginForm');
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value;
         const pass = document.getElementById('loginPass').value;
 
-        // هنا يمكنك وضع شرط بسيط للدخول للموقع الداخلي
         if(email && pass) {
-            alert('Logging in...');
-            window.location.href = 'index.html'; // سينقلك للصفحة الرئيسية بعد الدخول
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.innerHTML = 'Processing...';
+                submitBtn.disabled = true;
+            }
+
+            setTimeout(() => {
+                window.location.href = 'home-in.html'; 
+            }, 1000);
         }
     });
-});
+}
+
 
 const signupForm = document.getElementById('signupForm');
 signupForm.addEventListener('submit', (e) => {
