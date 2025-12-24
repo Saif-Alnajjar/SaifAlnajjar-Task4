@@ -7,64 +7,99 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="auth-page">
+<body class="auth-page-bg">
 
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            <div class="logo-center">shifra</div>
-            
-            <div id="loginSection">
-                <h2 class="auth-title">Sign in to your account</h2>
-                <form id="loginForm">
-                    <div class="input-group">
-                        <label>Email Address</label>
-                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" id="loginPass" placeholder="Enter your password" required>
-                    </div>
-                    <div style="text-align: right; margin-bottom: 15px;">
-                        <a href="#" id="toForgot" style="font-size: 13px; color: #64748b; text-decoration: none;">Forgot password?</a>
-                    </div>
-                    <button type="submit" class="btn-auth-primary">Login</button>
-                </form>
-                <p class="auth-footer">Don't have an account? <a href="#" id="toSignup">Sign up here</a></p>
+    <div class="auth-main-container">
+        
+        <div id="loginSection" class="auth-box">
+            <div class="auth-logo-icon">
+                <img src="logo-icon.png" alt="Logo"> </div>
+            <h1 class="auth-heading">Welcome Back</h1>
+            <p class="auth-subheading">Sign in to continue your learning</p>
+
+            <form id="loginForm" class="auth-form">
+                <div class="input-field">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="input-field">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-navy">Login</button>
+            </form>
+
+            <div class="social-auth">
+                <button class="social-btn"><img src="google-icon.png"> Continue With Google</button>
+                <button class="social-btn"><img src="fb-icon.png"> Continue With Facebook</button>
             </div>
 
-            <div id="signupSection" style="display: none;">
-                <h2 class="auth-title">Create a new account</h2>
-                <form id="signupForm">
-                    <div class="input-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Create a password" required>
-                    </div>
-                    <button type="submit" class="btn-auth-primary">Sign Up</button>
-                </form>
-                <p class="auth-footer">Already have an account? <a href="#" id="toLogin">Login here</a></p>
-            </div>
-
-            <div id="forgotSection" style="display: none;">
-                <h2 class="auth-title">Reset Password</h2>
-                <p style="font-size: 14px; color: #64748b; margin-bottom: 20px;">Enter your email to receive a reset link.</p>
-                <form id="forgotForm">
-                    <div class="input-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="Enter your email" required>
-                    </div>
-                    <button type="submit" class="btn-auth-primary">Send Reset Link</button>
-                </form>
-                <p class="auth-footer"><a href="#" id="backToLogin">Back to Login</a></p>
+            <div class="auth-links">
+                <a href="#" id="toForgot">Forgot Password?</a>
+                <p>Dont have an account? <a href="#" id="toSignup">Sign Up</a></p>
             </div>
         </div>
+
+        <div id="signupSection" class="auth-box" style="display: none;">
+            <h1 class="auth-heading">Create Account</h1>
+            <p class="auth-subheading">Join Shifra and start your learning journey</p>
+
+            <form id="signupForm" class="auth-form">
+                <div class="input-row">
+                    <div class="input-field">
+                        <label>First Name</label>
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="input-field">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-field">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+                <div class="input-field">
+                    <label>Confirm Password</label>
+                    <input type="password" placeholder="Confirm your password" required>
+                </div>
+                <div class="terms-check">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I agree to the Terms and Privacy Policy</label>
+                </div>
+                <button type="submit" class="btn-navy">Sign In</button>
+            </form>
+
+            <div class="divider"><span>Or sign up with</span></div>
+
+            <div class="social-auth-row">
+                <button class="social-btn-small"><img src="google-icon.png"> Google</button>
+                <button class="social-btn-small"><img src="fb-icon.png"> Facebook</button>
+            </div>
+
+            <div class="auth-links">
+                <p>Already have an account? <a href="#" id="toLogin">Sign in here</a></p>
+            </div>
+        </div>
+
+        <div id="forgotSection" class="auth-box" style="display: none;">
+            <div class="back-link"><a href="#" id="backToLoginFromForgot"><i class="fas fa-arrow-left"></i> Back</a></div>
+            <h1 class="auth-heading">Forgot Password</h1>
+            <p class="auth-subheading">Enter your email address and we'll send you a link to reset your password</p>
+
+            <form id="forgotForm" class="auth-form">
+                <div class="input-field">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email address" required>
+                </div>
+                <button type="submit" class="btn-navy">Reset Password</button>
+            </form>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
