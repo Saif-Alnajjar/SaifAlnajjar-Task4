@@ -3,104 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - Course Details</title>
+    <title>Course Details - Advanced React</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-
-    <header class="main-header">
-        <nav class="navbar container">
-            <div class="logo">shifra</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html" class="active">Courses</a></li>
-                <li><a href="path-info.html">My Path</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+    <header>
+        <div class="logo">shifra</div>
+        <nav>
+            <ul>
+                <li><a href="home-logged-in.html">Home</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About</a></li>
             </ul>
-            <div class="auth-buttons">
-                <a href="auth.html" class="login-link">Login</a>
-                <a href="auth.html" class="btn-signup">Sign Up</a>
-            </div>
         </nav>
     </header>
 
-    <main class="container course-details-page">
-        <h1 class="page-main-title">Course Details</h1>
-
+    <main class="container">
+        <h2 class="page-title">Course Details</h2>
         <div class="details-layout">
-            <div class="details-content">
-                <div class="main-course-img">
-                    <img src="images/course-large.jpg" alt="Advanced React Development">
+            <div class="details-main">
+                <img src="react-banner.jpg" class="main-banner">
+                <h3>Advanced React Development</h3>
+                <p class="instructor">Sarah Johnson • 4.9 ★ • 8 weeks</p>
+                <p class="price">$299</p>
+                <div class="description">
+                    <h4>Course Description</h4>
+                    <p>Learn React patterns, hooks, and state management with hands-on projects.</p>
                 </div>
-
-                <h2 class="course-title-h2">Advanced React Development</h2>
-                <div class="course-instructor-meta">
-                    <span>Sarah Johnson • 4.9 <i class="fas fa-star"></i> • 8 weeks</span>
-                </div>
-                
-                <div class="price-mobile-only">$299</div>
-
-                <section class="info-section">
-                    <h3>Course Description</h3>
-                    <p>Learn Python, statistics, and machine learning for data-driven decision making. This course provides hands-on experience with real datasets and industry-standard tools.</p>
-                </section>
-
-                <section class="suggested-section">
-                    <h3>Suggested Courses</h3>
-                    <div class="suggested-grid">
-                        <div class="mini-card">
-                            <img src="images/react-dev.png" alt="Course">
-                            <div class="mini-card-body">
-                                <h4>Advanced React Development</h4>
-                                <p>Master modern React patterns, hooks, and state management.</p>
-                                <div class="mini-card-btns">
-                                    <button class="btn-mini-details">Details</button>
-                                    <button class="btn-mini-book">Book</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mini-card">
-                            <img src="images/data-science.png" alt="Course">
-                            <div class="mini-card-body">
-                                <h4>Data Science Fundamentals</h4>
-                                <p>Learn Python, statistics, and machine learning for data-driven decision.</p>
-                                <div class="mini-card-btns">
-                                    <button class="btn-mini-details">Details</button>
-                                    <button class="btn-mini-book">Book</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
 
-            <aside class="details-sidebar">
-                <div class="sidebar-box schedule-box">
-                    <h3>Schedule</h3>
-                    <div class="session-info">
-                        <strong>Next Session</strong>
-                        <p>Monday, Jan 15 • 2:00 PM - 4:00 PM</p>
-                        <button class="btn-add-calendar">Add to Calendar</button>
-                    </div>
-                    <div class="reminder-note">
-                        <i class="fas fa-bell"></i> Reminder will be sent 24h before course
-                    </div>
+            <div class="details-sidebar">
+                <div class="schedule-card">
+                    <h4>Schedule</h4>
+                    <p>Next Session: Monday, Jan 15</p>
+                    <button class="btn-secondary">Add to Calendar</button>
                 </div>
-
-                <div class="sidebar-box registration-box">
-                    <h3>Registration</h3>
-                    <div class="price-tag">$499</div>
-                    <a href="auth.html" class="btn-register-now">Register Now</a>
+                <div class="registration-card">
+                    <h4>Registration</h4>
+                    <p class="big-price">$499</p>
+                    <a href="registration.html" class="btn-navy">Register Now</a>
                 </div>
-            </aside>
+            </div>
         </div>
     </main>
-
-    <footer class="main-footer">
-        </footer>
-
 </body>
 </html>
