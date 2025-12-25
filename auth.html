@@ -6,19 +6,56 @@
     <title>Shifra - Authentication</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* تنسيق بسيط إضافي لشاشات الترحيب لتبدو مثل الصور */
+        .onboard-step { text-align: center; width: 100%; max-width: 350px; }
+        .onboard-step img { width: 100%; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .dots { margin: 20px 0; display: flex; justify-content: center; gap: 8px; }
+        .dot { width: 8px; height: 8px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: #2D3E50; width: 20px; border-radius: 10px; }
+        .onboard-btn-next { width: 100%; padding: 15px; background: #2D3E50; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; margin-top: 20px; }
+        .onboard-btn-skip { background: none; border: none; color: #999; margin-top: 15px; cursor: pointer; font-size: 14px; }
+    </style>
 </head>
 <body class="auth-page-bg">
- <div id="loaderScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; flex-direction: column; align-items: center; justify-content: center;">
-    <img src="images/IMG_5563.jpeg" style="width: 100px; margin-bottom: 20px;">
-    
-    <div style="width: 200px; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; position: relative;">
-        <div id="loaderBar" style="width: 0%; height: 100%; background: #2D3E50; transition: width 0.3s;"></div>
+
+    <div id="loaderScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="images/IMG_5563.jpeg" style="width: 100px; margin-bottom: 20px;">
+        <div style="width: 200px; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; position: relative;">
+            <div id="loaderBar" style="width: 0%; height: 100%; background: #2D3E50; transition: width 0.3s;"></div>
+        </div>
+        <p style="margin-top: 10px; color: #2D3E50; font-family: sans-serif;">Signing in...</p>
     </div>
-    <p style="margin-top: 10px; color: #2D3E50; font-family: sans-serif;">Signing in...</p>
-</div>
+
+    <div id="onboardingScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10001; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+        
+        <div id="step1" class="onboard-step">
+            <img src="images/ai-path-image.png" alt="Learning Path"> <h2 style="color: #2D3E50;">Learning Path AI</h2>
+            <p style="color: #666; margin: 15px 0;">Personalized learning paths powered by artificial intelligence to match your goals and pace.</p>
+            <div class="dots"> <div class="dot active"></div> <div class="dot"></div> <div class="dot"></div> </div>
+            <button class="onboard-btn-next" onclick="nextStep(2)">Next</button>
+            <button class="onboard-btn-skip" onclick="skipOnboarding()">Skip</button>
+        </div>
+
+        <div id="step2" class="onboard-step" style="display: none;">
+            <img src="images/reminders-image.png" alt="Smart Reminders">
+            <h2 style="color: #2D3E50;">Smart Reminders</h2>
+            <p style="color: #666; margin: 15px 0;">Never miss a class or deadline with intelligent notifications tailored to your schedule.</p>
+            <div class="dots"> <div class="dot"></div> <div class="dot active"></div> <div class="dot"></div> </div>
+            <button class="onboard-btn-next" onclick="nextStep(3)">Next</button>
+            <button class="onboard-btn-skip" onclick="skipOnboarding()">Skip</button>
+        </div>
+
+        <div id="step3" class="onboard-step" style="display: none;">
+            <img src="images/recommend-image.png" alt="Smart Recommendations">
+            <h2 style="color: #2D3E50;">Smart Recommendations</h2>
+            <p style="color: #666; margin: 15px 0;">Discover courses and content recommendations based on your learning progress and interests.</p>
+            <div class="dots"> <div class="dot"></div> <div class="dot"></div> <div class="dot active"></div> </div>
+            <button class="onboard-btn-next" onclick="skipOnboarding()">Get Started</button>
+        </div>
+    </div>
 
     <div class="auth-main-container">
-        
         <div id="loginSection" class="auth-box">
             <div class="auth-logo-icon">
                 <img src="images/IMG_5563.jpeg" alt="Logo"> </div>
@@ -97,7 +134,7 @@
         <div id="forgotSection" class="auth-box" style="display: none;">
             <div class="back-link"><a href="#" id="backToLoginFromForgot"><i class="fas fa-arrow-left"></i> Back</a></div>
             <h1 class="auth-heading">Forgot Password</h1>
-            <p class="auth-subheading">Enter your email address and we'll send you a link to reset your password</p>
+            <p style="color:#666">Enter your email address and we'll send you a link to reset your password</p>
 
             <form id="forgotForm" class="auth-form">
                 <div class="input-field">
@@ -107,7 +144,6 @@
                 <button type="submit" class="btn-navy">Reset Password</button>
             </form>
         </div>
-
     </div>
 
     <script src="script.js"></script>
