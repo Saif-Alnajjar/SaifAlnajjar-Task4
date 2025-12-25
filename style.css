@@ -2609,46 +2609,6 @@ nav ul {
     pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو نفسه */
 }
 
-/* --- كود إصلاح أزرار التواصل الاجتماعي في نهاية الملف --- */
-
-/* 1. تصفير أي تنسيق قديم للأزرار الاجتماعية */
-.social-auth, .social-auth-row {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    margin-top: 20px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* 2. تنسيق الزر ليكون مطابقاً للصورة (خلفية بيضاء، حواف رمادية) */
-.social-btn, .social-btn-small {
-    width: 100% !important;
-    height: 50px !important;
-    background-color: #ffffff !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 8px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 12px !important;
-    cursor: pointer !important;
-    font-family: inherit !important;
-    font-size: 15px !important;
-    color: #374151 !important;
-    transition: all 0.2s ease !important;
-    text-decoration: none !important;
-}
-
-/* 3. تنسيق الأيقونات (Font Awesome) لتعمل بقوة */
-.social-btn i, .social-btn-small i {
-    font-family: "Font Awesome 6 Free", "Font Awesome 5 Free" !important;
-    font-weight: 900 !important;
-    font-style: normal !important;
-    display: inline-block !important;
-    font-size: 18px !important;
-}
-
 /* 4. تلوين الأيقونات حسب العلامة التجارية */
 .social-btn i.fa-google {
     color: #DB4437 !important; /* أحمر جوجل */
@@ -2656,10 +2616,4 @@ nav ul {
 
 .social-btn i.fa-facebook-f, .social-btn i.fa-facebook {
     color: #1877F2 !important; /* أزرق فيسبوك */
-}
-
-/* 5. تأثير عند تمرير الماوس */
-.social-btn:hover {
-    background-color: #f9fafb !important;
-    border-color: #d1d5db !important;
 }
