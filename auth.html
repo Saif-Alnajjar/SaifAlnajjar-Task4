@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="auth-page-bg">
+ <div id="loaderScreen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; flex-direction: column; align-items: center; justify-content: center;">
+    <img src="images/IMG_5563.jpeg" style="width: 100px; margin-bottom: 20px;">
+    
+    <div style="width: 200px; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; position: relative;">
+        <div id="loaderBar" style="width: 0%; height: 100%; background: #2D3E50; transition: width 0.3s;"></div>
+    </div>
+    <p style="margin-top: 10px; color: #2D3E50; font-family: sans-serif;">Signing in...</p>
+</div>
 
     <div class="auth-main-container">
         
