@@ -8,7 +8,6 @@ const loginSection = document.getElementById('loginSection');
 const signupSection = document.getElementById('signupSection');
 const forgotSection = document.getElementById('forgotSection');
 
-// دالة لتغيير الأقسام بسلاسة
 const showSection = (sectionToShow) => {
     if(loginSection) loginSection.style.display = 'none';
     if(signupSection) signupSection.style.display = 'none';
@@ -21,7 +20,7 @@ if(toLogin) toLogin.onclick = () => showSection(loginSection);
 if(toForgot) toForgot.onclick = () => showSection(forgotSection);
 if(backToLoginFromForgot) backToLoginFromForgot.onclick = () => showSection(loginSection);
 
-// 2. نظام التسجيل (Sign Up) - حفظ البيانات
+// 2. نظام التسجيل (Sign Up) - حفظ البيانات في المتصفح
 const signupForm = document.getElementById('signupForm');
 if(signupForm) {
     signupForm.onsubmit = (e) => {
@@ -41,7 +40,23 @@ if(signupForm) {
     };
 }
 
-// 3. نظام تسجيل الدخول مع التوجيه لـ "داخل الموقع"
+// 3. وظائف شاشات الترحيب (Onboarding)
+function nextStep(stepNumber) {
+    // إخفاء كل الخطوات
+    document.querySelectorAll('.onboard-step').forEach(step => {
+        step.style.display = 'none';
+    });
+    // إظهار الخطوة المطلوبة
+    const targetStep = document.getElementById('step' + stepNumber);
+    if(targetStep) targetStep.style.display = 'block';
+}
+
+function skipOnboarding() {
+    // التوجيه النهائي للموقع بعد الشاشات أو عند الضغط على Skip
+    window.location.href = 'home-logged-in.html'; 
+}
+
+// 4. نظام تسجيل الدخول مع شريط التحميل ثم شاشات الترحيب
 const loginForm = document.getElementById('loginForm');
 if(loginForm) {
     loginForm.onsubmit = (e) => {
@@ -58,15 +73,22 @@ if(loginForm) {
                 loader.style.display = 'flex';
                 let progress = 0;
                 const interval = setInterval(() => {
-                    progress += 5;
+                    progress += 10; // سرعة الشريط
                     bar.style.width = progress + '%';
                     
                     if (progress >= 100) {
                         clearInterval(interval);
-                        // التغيير هنا: بدلاً من index.html ننتقل لصفحة "داخل الموقع"
-                        window.location.href = 'home-logged-in.html'; 
+                        // بعد انتهاء التحميل: إخفاء التحميل وإظهار شاشة الترحيب الأولى
+                        loader.style.display = 'none';
+                        const onboarding = document.getElementById('onboardingScreen');
+                        if(onboarding) {
+                            onboarding.style.display = 'flex';
+                        } else {
+                            // إذا لم تكن شاشات الترحيب موجودة، ادخل فوراً
+                            window.location.href = 'home-logged-in.html';
+                        }
                     }
-                }, 50);
+                }, 80); 
             } else {
                 window.location.href = 'home-logged-in.html';
             }
