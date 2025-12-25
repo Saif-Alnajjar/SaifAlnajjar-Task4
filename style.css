@@ -2516,3 +2516,95 @@ nav ul {
         padding: 20px 10px !important;
     }
 }
+
+/* --- 1. كسر أي طبقات شفافة تغطي الصفحة (Force Interactive) --- */
+.public-page, .container, .section-padding {
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* --- 2. إجبار حاوية الكورسات على الترتيب الصحيح --- */
+.courses-grid-home {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 25px !important;
+    padding: 20px 0 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+/* --- 3. إصلاح كرت الكورس وجعله قابلاً للضغط --- */
+.course-card-wide {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: auto !important; /* السماح بالضغط */
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* ضبط حجم الصورة لتظهر كاملة كما طلبتِ */
+.course-card-wide img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: contain !important; /* يمنع قص الصورة */
+    background-color: #f8f9fa !important;
+}
+
+/* --- 4. تنسيق أزرار Details و Book (القوة القصوى) --- */
+.card-footer-btns {
+    display: flex !important;
+    gap: 10px !important;
+    padding: 15px !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+}
+
+.card-footer-btns a, 
+.card-footer-btns button {
+    flex: 1 !important;
+    padding: 12px 5px !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    display: block !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    pointer-events: auto !important; /* ضمان النقر */
+}
+
+/* لون زر Details */
+.btn-outline, a[href*="details"] {
+    border: 1.5px solid #2D3E50 !important;
+    color: #2D3E50 !important;
+    background: white !important;
+}
+
+/* لون زر Book */
+.btn-fill, a[href*="registration"] {
+    background-color: #2D3E50 !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* تأثير عند تمرير الماوس */
+.card-footer-btns a:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2) !important;
+}
+
+/* --- 5. منع الهيرو (Hero) من تغطية المحتوى --- */
+.hero-banner {
+    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: none !important; /* يجعل الهيرو لا "يصطدم" بالماوس */
+}
+.hero-text, .btn-get-started {
+    pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو نفسه */
+}
