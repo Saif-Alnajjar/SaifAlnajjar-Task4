@@ -1,85 +1,59 @@
-document.addEventListener('DOMContentLoaded', function() {
+// 1. التبديل بين الأقسام (إظهار وإخفاء الصناديق)
+const toSignup = document.getElementById('toSignup');
+const toLogin = document.getElementById('toLogin');
+const toForgot = document.getElementById('toForgot');
+const backToLoginFromForgot = document.getElementById('backToLoginFromForgot');
+
+const loginSection = document.getElementById('loginSection');
+const signupSection = document.getElementById('signupSection');
+const forgotSection = document.getElementById('forgotSection');
+
+toSignup.onclick = () => { loginSection.style.display = 'none'; signupSection.style.display = 'block'; }
+toLogin.onclick = () => { signupSection.style.display = 'none'; loginSection.style.display = 'block'; }
+toForgot.onclick = () => { loginSection.style.display = 'none'; forgotSection.style.display = 'block'; }
+backToLoginFromForgot.onclick = () => { forgotSection.style.display = 'none'; loginSection.style.display = 'block'; }
+
+// 2. نظام التسجيل (Sign Up) - حفظ البيانات في المتصفح
+const signupForm = document.getElementById('signupForm');
+
+signupForm.onsubmit = (e) => {
+    e.preventDefault();
     
-    // Elements
-    const loginSection = document.getElementById('loginSection');
-    const signupSection = document.getElementById('signupSection');
-    const forgotSection = document.getElementById('forgotSection');
+    // سحب البيانات من الحقول
+    const email = signupForm.querySelector('input[type="email"]').value;
+    const password = signupForm.querySelectorAll('input[type="password"]')[0].value;
+    const confirmPass = signupForm.querySelectorAll('input[type="password"]')[1].value;
 
-    // Navigation Links
-    const toSignup = document.getElementById('toSignup');
-    const toLogin = document.getElementById('toLogin');
-    const toForgot = document.getElementById('toForgot');
-    const backToLogin = document.getElementById('backToLogin');
-
-    // Navigation Logic (Switching Views)
-    if (toSignup) toSignup.onclick = (e) => { e.preventDefault(); loginSection.style.display = 'none'; signupSection.style.display = 'block'; };
-    if (toLogin) toLogin.onclick = (e) => { e.preventDefault(); signupSection.style.display = 'none'; loginSection.style.display = 'block'; };
-    if (toForgot) toForgot.onclick = (e) => { e.preventDefault(); loginSection.style.display = 'none'; forgotSection.style.display = 'block'; };
-    if (backToLogin) backToLogin.onclick = (e) => { e.preventDefault(); forgotSection.style.display = 'none'; loginSection.style.display = 'block'; };
-
-    // --- 1. SIGN UP LOGIC (Actually saving data) ---
-    const signupForm = document.getElementById('signupForm');
-    if (signupForm) {
-        signupForm.onsubmit = function(e) {
-            e.preventDefault();
-            const name = signupForm.querySelector('input[type="text"]').value;
-            const email = signupForm.querySelector('input[type="email"]').value;
-            const password = signupForm.querySelector('input[type="password"]').value;
-
-            // Store in LocalStorage
-            localStorage.setItem('userEmail', email);
-            localStorage.setItem('userPassword', password);
-            localStorage.setItem('userName', name);
-
-            alert('Account created successfully for ' + name + '! You can now login.');
-            signupSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        };
+    if (password !== confirmPass) {
+        alert("Passwords do not match!");
+        return;
     }
 
-    // --- 2. LOGIN LOGIC (Checking against saved data) ---
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.onsubmit = function(e) {
-            e.preventDefault();
-            const emailInput = document.getElementById('loginEmail').value;
-            const passInput = document.getElementById('loginPass').value;
+    // حفظ الحساب في الذاكرة (localStorage)
+    localStorage.setItem(email, password);
+    alert("Account created successfully! Now you can login.");
+    
+    // العودة لصفحة الدخول
+    signupSection.style.display = 'none';
+    loginSection.style.display = 'block';
+};
 
-            // Get data from LocalStorage
-            const storedEmail = localStorage.getItem('userEmail');
-            const storedPass = localStorage.getItem('userPassword');
+// 3. نظام تسجيل الدخول (Login) - التأكد من وجود الحساب
+const loginForm = document.getElementById('loginForm');
 
-            // Hardcoded "Master Account" (Optional: you can use this too)
-            const masterEmail = "admin@shifra.com";
-            const masterPass = "123456";
+loginForm.onsubmit = (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value;
+    const pass = document.getElementById('loginPass').value;
 
-            if ((emailInput === storedEmail && passInput === storedPass) || (emailInput === masterEmail && passInput === masterPass)) {
-                const btn = loginForm.querySelector('button');
-                btn.innerHTML = 'Verifying...';
-                setTimeout(() => {
-                    window.location.href = 'home-logged-in.html';
-                }, 1000);
-            } else {
-                alert('Invalid Email or Password. Please try again or create a new account.');
-            }
-        };
+    // التأكد من الذاكرة
+    const savedPassword = localStorage.getItem(email);
+
+    if (savedPassword && savedPassword === pass) {
+        alert("Welcome back!");
+        window.location.href = 'home-logged-in.html'; // الصفحة التي تفتح بعد النجاح
+    } else {
+        alert("Invalid! This account does not exist or password is wrong.");
     }
-
-    // --- 3. FORGOT PASSWORD LOGIC ---
-    const forgotForm = document.getElementById('forgotForm');
-    if (forgotForm) {
-        forgotForm.onsubmit = function(e) {
-            e.preventDefault();
-            const email = forgotForm.querySelector('input').value;
-            const storedEmail = localStorage.getItem('userEmail');
-
-            if (email === storedEmail || email === "admin@shifra.com") {
-                alert('Reset link sent to: ' + email);
-                forgotSection.style.display = 'none';
-                loginSection.style.display = 'block';
-            } else {
-                alert('Email not found in our records.');
-            }
-        };
-    }
-});
+};
