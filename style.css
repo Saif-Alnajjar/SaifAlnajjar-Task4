@@ -2609,11 +2609,3 @@ nav ul {
     pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو نفسه */
 }
 
-/* 4. تلوين الأيقونات حسب العلامة التجارية */
-.social-btn i.fa-google {
-    color: #DB4437 !important; /* أحمر جوجل */
-}
-
-.social-btn i.fa-facebook-f, .social-btn i.fa-facebook {
-    color: #1877F2 !important; /* أزرق فيسبوك */
-}
