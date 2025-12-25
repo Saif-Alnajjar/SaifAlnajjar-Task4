@@ -2466,3 +2466,53 @@ input:checked + .slider:before { transform: translateX(22px); }
 .auth-heading {
     margin-top: 0 !important;
 }
+/* --- اصلاح الهيدر (Header Fix) --- */
+header, .header-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important; /* يمنع تداخل العناصر */
+    padding: 10px 5% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+nav ul {
+    display: flex !important;
+    gap: 15px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
+}
+
+/* --- اصلاح صور الكورسات (Course Images Fix) --- */
+/* هذا الجزء سيجعل الصورة تظهر كاملة (Contain) وبحجم متناسق */
+.course-card img, .course-image, [class*="course"] img {
+    width: 100% !important;
+    max-height: 220px !important; /* ارتفاع مناسب ليظهر الصورة كاملة */
+    object-fit: contain !important; /* أهم سطر: يمنع قص الصورة ويظهرها كاملة */
+    background-color: #f1f5f9 !important; /* خلفية خفيفة للفراغات */
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+/* --- ضبط عرض كرت الكورس --- */
+.course-card, [class*="card"] {
+    max-width: 380px !important; /* يمنع الكرت من التوسع الزائد */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* --- اخفاء المسافات البيضاء الضخمة في الجوال --- */
+@media (max-width: 768px) {
+    .auth-logo-icon img {
+        width: 100px !important; /* تصغير اللوجو في الجوال */
+    }
+    
+    .hero-section {
+        padding: 20px 10px !important;
+    }
+}
