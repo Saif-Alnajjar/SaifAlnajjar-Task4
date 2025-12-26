@@ -2608,30 +2608,37 @@ nav ul {
 .hero-text, .btn-get-started {
     pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو */
 
-/* --- إضافة في نهاية الملف لجعل الشريط قابلاً للسحب سحب --- */
+/* --- كود إظهار 5 أيقونات مع إمكانية سحب الباقي --- */
 
 .bottom-nav {
     display: flex !important;
-    flex-wrap: nowrap !important; /* يمنع نزول العناصر لسطر جديد */
+    flex-wrap: nowrap !important; /* منع العناصر من النزول لسطر جديد */
     overflow-x: auto !important; /* تفعيل السحب الأفقي */
-    justify-content: flex-start !important; /* يبدأ العناصر من اليسار ليعطي مساحة للسحب */
-    padding: 10px 15px !important;
-    -webkit-overflow-scrolling: touch !important; /* لجعل السحب سلساً جداً على الموبايل */
-    gap: 0 !important;
+    padding: 10px 0 !important;
+    background: white !important;
+    border-top: 1px solid #eee !important;
+    
+    /* جعل السحب ناعم جداً */
+    -webkit-overflow-scrolling: touch !important; 
+    scroll-behavior: smooth !important;
 }
 
-/* إخفاء شكل شريط التمرير المزعج ليظهر كأنه تطبيق */
+/* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
 .bottom-nav::-webkit-scrollbar {
     display: none !important;
 }
 
 .nav-item {
-    flex: 0 0 auto !important; /* يمنع انكماش الأيقونات ويحافظ على حجمها */
-    min-width: 85px !important; /* المسافة المريحة بين كل أيقونة والثانية */
-    margin: 0 !important;
+    /* تحديد عرض كل أيقونة بـ 20% ليظهر 5 فقط في عرض الشاشة */
+    flex: 0 0 20% !important;
+    min-width: 20% !important;
+    max-width: 20% !important;
+    
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
 }
 
 .nav-item i {
@@ -2641,5 +2648,9 @@ nav ul {
 
 .nav-item span {
     font-size: 10px !important;
+    /* منع النص من الاختفاء أو النزول لسطر جديد */
     display: block !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
+
