@@ -2606,6 +2606,40 @@ nav ul {
     pointer-events: none !important; /* يجعل الهيرو لا "يصطدم" بالماوس */
 }
 .hero-text, .btn-get-started {
-    pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو نفسه */
+    pointer-events: auto !important; /* إعادة تفعيل أزرار الهيرو */
+
+/* --- إضافة في نهاية الملف لجعل الشريط قابلاً للسحب سحب --- */
+
+.bottom-nav {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* يمنع نزول العناصر لسطر جديد */
+    overflow-x: auto !important; /* تفعيل السحب الأفقي */
+    justify-content: flex-start !important; /* يبدأ العناصر من اليسار ليعطي مساحة للسحب */
+    padding: 10px 15px !important;
+    -webkit-overflow-scrolling: touch !important; /* لجعل السحب سلساً جداً على الموبايل */
+    gap: 0 !important;
 }
 
+/* إخفاء شكل شريط التمرير المزعج ليظهر كأنه تطبيق */
+.bottom-nav::-webkit-scrollbar {
+    display: none !important;
+}
+
+.nav-item {
+    flex: 0 0 auto !important; /* يمنع انكماش الأيقونات ويحافظ على حجمها */
+    min-width: 85px !important; /* المسافة المريحة بين كل أيقونة والثانية */
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.nav-item i {
+    font-size: 20px !important;
+    margin-bottom: 4px !important;
+}
+
+.nav-item span {
+    font-size: 10px !important;
+    display: block !important;
+}
