@@ -6,6 +6,100 @@
     <title>Shifra - Home</title>
     <link rel="stylesheet" href="home-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+    /* كود الإنقاذ السريع لإصلاح شكل الصفحة */
+    
+    /* 1. منع تضخم اللوجو والصور */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    .logo-area img, .auth-logo-icon img {
+        width: 40px !important; /* حجم اللوجو الصغير كما في الصورة */
+        height: auto !important;
+    }
+
+    /* 2. إصلاح الهيدر العلوي */
+    .main-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 20px !important;
+        background: white !important;
+        border-bottom: 1px solid #eee !important;
+    }
+
+    /* 3. شريط البحث */
+    .search-box {
+        padding: 15px 20px !important;
+    }
+    .search-box input {
+        width: 100% !important;
+        padding: 12px !important;
+        border-radius: 10px !important;
+        border: 1px solid #ddd !important;
+        display: block !important;
+    }
+
+    /* 4. قسم الكورسات (تصغير الصور وتنسيق الكلام) */
+    .course-item {
+        display: flex !important;
+        gap: 15px !important;
+        margin: 15px 20px !important;
+        align-items: center !important;
+    }
+    .course-item img {
+        width: 80px !important;
+        height: 80px !important;
+        border-radius: 8px !important;
+        object-fit: cover !important;
+    }
+
+    /* 5. الشريط السفلي (السحب لـ 5 أيقونات) */
+    .bottom-navigation {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        display: flex !important;
+        overflow-x: auto !important; /* تفعيل السحب */
+        border-top: 1px solid #eee !important;
+        padding: 10px 0 !important;
+        z-index: 99999 !important;
+    }
+    
+    /* إخفاء شريط السحب المزعج */
+    .bottom-navigation::-webkit-scrollbar { display: none !important; }
+
+    .nav-link {
+        flex: 0 0 20% !important; /* يظهر 5 أيقونات بالضبط */
+        min-width: 20% !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        color: #888 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .nav-link i {
+        font-size: 20px !important;
+        margin-bottom: 3px !important;
+        display: block !important;
+    }
+    
+    .nav-link span {
+        font-size: 10px !important;
+        display: block !important;
+    }
+
+    /* 6. إخفاء أي عناصر قديمة تظهر بشكل عشوائي */
+    .old-nav, #oldHeader { display: none !important; }
+</style>
+
 </head>
 <body>
 
