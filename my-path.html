@@ -4,92 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shifra - My Learning Path</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body class="logged-in-body">
 
-    <header class="main-header">
-        <nav class="navbar container">
-            <div class="logo">shifra</div>
-            <div class="header-right">
-                <i class="far fa-bell icon-btn"></i>
-                <div class="user-avatar-circle">S</div>
-            </div>
-        </nav>
+    <style>
+        /* كود التصميم لصفحة My Path */
+        * {
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        body {
+            background-color: #ffffff !important;
+            color: #2D3E50 !important;
+            padding-bottom: 100px !important;
+        }
+
+        /* الهيدر العلوي */
+        .path-header {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 20px !important;
+        }
+        .path-header h2 { font-size: 20px !important; color: #2D3E50 !important; }
+        .settings-btn {
+            background: #f4f6f8 !important;
+            border: none !important;
+            width: 36px !important; height: 36px !important;
+            border-radius: 8px !important;
+            color: #2D3E50 !important;
+        }
+
+        /* كرت الترحيب البنفسجي (Header Card) */
+        .journey-card {
+            margin: 0 20px 25px 20px !important;
+            background: linear-gradient(135deg, #2D3E50 0%, #4A5568 100%) !important;
+            border-radius: 16px !important;
+            padding: 25px !important;
+            color: white !important;
+            text-align: center !important;
+        }
+        .journey-card h3 { font-size: 18px !important; margin-bottom: 5px !important; }
+        .journey-card p { font-size: 12px !important; opacity: 0.8 !important; margin-bottom: 20px !important; }
+        
+        .stats-row { display: flex !important; justify-content: space-around !important; }
+        .stat-item { text-align: center !important; }
+        .stat-item h4 { font-size: 20px !important; margin-bottom: 2px !important; }
+        .stat-item span { font-size: 11px !important; opacity: 0.7 !important; }
+
+        /* التقدم العام (Overall Progress) */
+        .progress-section { padding: 0 20px !important; margin-bottom: 30px !important; }
+        .progress-section h4 { font-size: 15px !important; margin-bottom: 10px !important; }
+        .progress-bar-bg { background: #E2E8F0 !important; height: 8px !important; border-radius: 10px !important; margin-bottom: 8px !important; }
+        .progress-bar-fill { background: #2D3E50 !important; width: 35% !important; height: 100% !important; border-radius: 10px !important; }
+        .milestone { font-size: 12px !important; color: #64748b !important; }
+        .milestone strong { color: #2D3E50 !important; }
+
+        /* الجدول الزمني للكورسات (Timeline) */
+        .timeline-container { padding: 0 20px !important; position: relative !important; }
+        
+        /* الخط الواصل بين الدوائر */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 35px; top: 10px; bottom: 10px;
+            width: 2px; background: #E2E8F0;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex !important;
+            gap: 20px !important;
+            margin-bottom: 25px !important;
+            position: relative !important;
+            z-index: 2 !important;
+        }
+
+        .timeline-dot {
+            width: 30px !important; height: 30px !important;
+            background: #fff !important;
+            border: 2px solid #E2E8F0 !important;
+            border-radius: 6px !important;
+            flex-shrink: 0 !important;
+        }
+
+        .timeline-content { flex: 1 !important; }
+        .timeline-header { display: flex !important; justify-content: space-between !important; margin-bottom: 5px !important; }
+        .timeline-header h5 { font-size: 15px !important; color: #2D3E50 !important; }
+        .timeline-header .duration { font-size: 11px !important; color: #94A3B8 !important; }
+        
+        .tag { display: inline-block !important; font-size: 11px !important; background: #F1F5F9 !important; padding: 3px 12px !important; border-radius: 15px !important; color: #64748b !important; }
+        
+        .progress-mini { margin-top: 10px !important; }
+        .mini-bar { height: 4px !important; background: #E2E8F0 !important; border-radius: 10px !important; margin-bottom: 5px !important; width: 100% !important; }
+        .mini-fill { height: 100% !important; background: #2D3E50 !important; border-radius: 10px !important; width: 35% !important; }
+        .continue-btn { font-size: 12px !important; color: #2D3E50 !important; text-decoration: none !important; font-weight: 600 !important; }
+
+        /* قسم توصيات الذكاء الاصطناعي (AI Recommendations) */
+        .ai-section { padding: 20px !important; }
+        .ai-section h4 { font-size: 12px !important; color: #94A3B8 !important; letter-spacing: 1px !important; margin-bottom: 15px !important; }
+        .ai-box {
+            background: #F8FAFC !important;
+            border-radius: 16px !important;
+            padding: 20px !important;
+            display: flex !important;
+            gap: 15px !important;
+        }
+        .ai-icon { font-size: 24px !important; color: #2D3E50 !important; }
+        .ai-text h5 { font-size: 15px !important; margin-bottom: 5px !important; }
+        .ai-text p { font-size: 12px !important; color: #64748b !important; line-height: 1.5 !important; margin-bottom: 15px !important; }
+        .btn-ai {
+            background: #2D3E50 !important;
+            color: white !important;
+            border: none !important;
+            padding: 10px 20px !important;
+            border-radius: 10px !important;
+            font-size: 12px !important;
+            width: 100% !important;
+        }
+
+        /* الشريط السفلي (السحب) */
+        .bottom-nav {
+            position: fixed !important;
+            bottom: 0 !important; left: 0 !important; width: 100% !important;
+            background: white !important;
+            display: flex !important; overflow-x: auto !important;
+            border-top: 1px solid #eee !important;
+            padding: 12px 0 !important;
+            z-index: 1000 !important;
+        }
+        .bottom-nav::-webkit-scrollbar { display: none !important; }
+        .nav-item {
+            flex: 0 0 20% !important; min-width: 20% !important;
+            text-align: center !important; text-decoration: none !important;
+            color: #94a3b8 !important; display: flex !important;
+            flex-direction: column !important; align-items: center !important;
+        }
+        .nav-item i { font-size: 20px !important; margin-bottom: 4px !important; }
+        .nav-item span { font-size: 10px !important; }
+        .nav-item.active { color: #2D3E50 !important; font-weight: bold !important; }
+    </style>
+</head>
+<body>
+
+    <header class="path-header">
+        <h2>My Learning Path</h2>
+        <button class="settings-btn"><i class="fas fa-cog"></i></button>
     </header>
 
-    <main class="container path-main">
-        <h1 class="page-title">My Learning Path</h1>
+    <div class="journey-card">
+        <h3>Your Personalized Journey</h3>
+        <p>AI-powered learning path coming soon...</p>
+        <div class="stats-row">
+            <div class="stat-item"><h4>4</h4><span>Courses</span></div>
+            <div class="stat-item"><h4>12</h4><span>Weeks</span></div>
+            <div class="stat-item"><h4>35%</h4><span>Progress</span></div>
+        </div>
+    </div>
 
-        <section class="ai-status-box">
-            <div class="ai-header">
-                <i class="fas fa-robot"></i>
-                <span>AI Assistant</span>
-            </div>
-            <p>You are on track! Complete <strong>2 more lessons</strong> this week to reach your goal.</p>
-        </section>
+    <section class="progress-section">
+        <h4>Overall Progress</h4>
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+        <p class="milestone">Next milestone: <strong>Complete React hooks section</strong></p>
+    </section>
 
-        <div class="path-timeline">
-            <div class="timeline-item completed">
-                <div class="timeline-status">
-                    <i class="fas fa-check-circle"></i>
-                    <div class="line"></div>
-                </div>
-                <div class="timeline-content">
-                    <h4>Introduction to UI Design</h4>
-                    <p>Completed on Oct 12</p>
-                </div>
-            </div>
-
-            <div class="timeline-item active">
-                <div class="timeline-status">
-                    <div class="status-dot"></div>
-                    <div class="line"></div>
-                </div>
-                <div class="timeline-content">
-                    <span class="tag-now">NOW</span>
-                    <h4>Typography & Color Theory</h4>
-                    <p>Lesson 4 of 12 • 45 mins</p>
-                    <button class="btn-start-lesson">Start Lesson</button>
-                </div>
-            </div>
-
-            <div class="timeline-item locked">
-                <div class="timeline-status">
-                    <i class="fas fa-lock"></i>
-                    <div class="line"></div>
-                </div>
-                <div class="timeline-content">
-                    <h4>Advanced Prototyping</h4>
-                    <p>Unlocks after previous lesson</p>
-                </div>
+    <section class="timeline-container">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-header"><h5>React Fundamentals</h5><span class="duration">2 weeks</span></div>
+                <span class="tag">Course</span>
             </div>
         </div>
-    </main>
+
+        <div class="timeline-item">
+            <div class="timeline-dot" style="background: #2D3E50 !important;"></div>
+            <div class="timeline-content">
+                <div class="timeline-header"><h5>Advanced React Development</h5><span class="duration">8 weeks</span></div>
+                <p class="milestone" style="font-size: 10px !important;">35% complete</p>
+                <div class="progress-mini"><div class="mini-bar"><div class="mini-fill"></div></div></div>
+                <div style="margin-top: 5px;"><span class="tag">Course</span> &nbsp; <a href="#" class="continue-btn">Continue →</a></div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-header"><h5>Portfolio Project</h5><span class="duration">2 weeks</span></div>
+                <span class="tag">Course</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-section">
+        <h4>AI RECOMMENDATIONS</h4>
+        <div class="ai-box">
+            <div class="ai-icon"><i class="fas fa-brain"></i></div>
+            <div class="ai-text">
+                <h5>AI Suggestion</h5>
+                <p>Based on your progress, consider taking a UI/UX course next to complement your React skills.</p>
+                <button class="btn-ai">View Recommended Course</button>
+            </div>
+        </div>
+    </section>
 
     <nav class="bottom-nav">
-        <a href="home-logged-in.html" class="nav-item">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="explore.html" class="nav-item">
-            <i class="fas fa-search"></i>
-            <span>Explore</span>
-        </a>
-        <a href="my-path.html" class="nav-item active">
-            <i class="fas fa-route"></i>
-            <span>My Path</span>
-        </a>
-        <a href="alerts.html" class="nav-item">
-            <i class="fas fa-bell"></i>
-            <span>Alerts</span>
-        </a>
-        <a href="profile.html" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
+        <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="my-path.html" class="nav-item active"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notification</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
     </nav>
 
 </body>
