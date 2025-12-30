@@ -3,120 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - My Path (Logged In)</title>
-    
+    <title>Shifra - My Path</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        /* إعدادات الصفحة الأساسية */
+        /* إعدادات عامة لمنع التداخل */
         * {
             box-sizing: border-box !important;
             margin: 0 !important;
             padding: 0 !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+            font-family: sans-serif !important;
         }
 
         body {
-            background-color: #ffffff !important;
-            color: #2D3E50 !important;
-            padding-bottom: 90px !important; /* مساحة للشريط السفلي */
-            overflow-x: hidden !important;
+            background-color: #fff !important;
+            padding-bottom: 100px !important; /* مساحة كافية للشريط السفلي */
         }
 
         /* الهيدر العلوي */
         .header {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 20px !important;
+            display: flex !important; justify-content: space-between !important;
+            align-items: center !important; padding: 20px !important;
         }
-        .header h2 { font-size: 20px !important; color: #2D3E50 !important; font-weight: 600 !important; }
-        .settings-icon {
-            background: #f4f6f8 !important;
-            width: 38px !important;
-            height: 38px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            border-radius: 10px !important;
-            color: #2D3E50 !important;
-            cursor: pointer !important;
-        }
+        .header h2 { font-size: 20px !important; color: #2D3E50 !important; }
+        .settings-icon { background: #f4f6f8 !important; padding: 10px !important; border-radius: 8px !important; }
 
-        /* الكرت المتدرج (Hero Card) */
+        /* الكرت المتدرج */
         .hero-card {
             margin: 0 20px 25px !important;
             background: linear-gradient(135deg, #3d4e81 0%, #575d85 100%) !important;
-            border-radius: 16px !important;
-            padding: 25px !important;
-            color: white !important;
+            border-radius: 16px !important; padding: 25px !important; color: white !important;
             text-align: center !important;
-            box-shadow: 0 8px 20px rgba(61, 78, 129, 0.2) !important;
         }
-        .hero-card h3 { font-size: 18px !important; margin-bottom: 5px !important; font-weight: 500 !important; }
-        .hero-card p { font-size: 12px !important; margin-bottom: 25px !important; opacity: 0.8 !important; }
-        
+        .hero-card h3 { font-size: 18px !important; margin-bottom: 5px !important; }
+        .hero-card p { font-size: 12px !important; margin-bottom: 20px !important; opacity: 0.8 !important; }
         .stats-container { display: flex !important; justify-content: space-around !important; }
-        .stat-box h4 { font-size: 24px !important; margin-bottom: 2px !important; font-weight: bold !important; }
+        .stat-box h4 { font-size: 24px !important; }
         .stat-box span { font-size: 12px !important; opacity: 0.8 !important; }
 
         /* التقدم العام */
-        .section-title { font-size: 16px !important; font-weight: bold !important; margin: 0 20px 12px !important; color: #2D3E50 !important; }
-        .progress-section { padding: 0 20px !important; margin-bottom: 30px !important; }
-        .bar-bg { background: #edf2f7 !important; height: 10px !important; border-radius: 20px !important; margin-bottom: 10px !important; }
-        .bar-fill { background: #2D3E50 !important; width: 35% !important; height: 100% !important; border-radius: 20px !important; }
-        .milestone { font-size: 13px !important; color: #718096 !important; }
-        .milestone strong { color: #2D3E50 !important; }
+        .section-title { font-size: 16px !important; font-weight: bold !important; margin: 0 20px 10px !important; }
+        .progress-wrapper { padding: 0 20px !important; margin-bottom: 30px !important; }
+        .bar-bg { background: #edf2f7 !important; height: 10px !important; border-radius: 10px !important; margin-bottom: 8px !important; }
+        .bar-fill { background: #2D3E50 !important; width: 35% !important; height: 100% !important; border-radius: 10px !important; }
 
-        /* المسار الزمني (Timeline) */
+        /* المسار الزمني */
         .timeline { padding: 0 20px !important; position: relative !important; }
-        .timeline::before {
-            content: ''; position: absolute !important; left: 35px !important; top: 10px !important;
-            bottom: 10px !important; width: 1.5px !important; background: #e2e8f0 !important;
+        .timeline::before { 
+            content: ''; position: absolute !important; left: 35px !important; top: 10px !important; 
+            bottom: 10px !important; width: 2px !important; background: #e2e8f0 !important; 
         }
-        .timeline-item { display: flex !important; gap: 20px !important; margin-bottom: 30px !important; position: relative !important; }
-        
-        .dot {
-            width: 32px !important; height: 32px !important; background: #f8fafc !important;
-            border: 1px solid #e2e8f0 !important; border-radius: 6px !important;
-            flex-shrink: 0 !important; z-index: 2 !important;
+        .timeline-item { display: flex !important; gap: 20px !important; margin-bottom: 25px !important; position: relative !important; }
+        .dot { width: 30px !important; height: 30px !important; background: #f8fafc !important; border: 1px solid #e2e8f0 !important; border-radius: 6px !important; z-index: 1 !important; }
+        .dot.active { border-color: #2D3E50 !important; }
+
+        /* الحل النهائي لمشكلة الشريط السفلي */
+        .footer-nav {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            background: white !important;
+            display: flex !important;
+            flex-wrap: nowrap !important; /* منع العناصر من النزول سطر جديد */
+            overflow-x: auto !important; /* تفعيل السحب الأفقي */
+            border-top: 1px solid #eee !important;
+            padding: 10px 0 !important;
+            z-index: 9999 !important;
+            -webkit-overflow-scrolling: touch !important; /* تحسين السحب على الجوال */
         }
-        .dot.active { border-color: #2D3E50 !important; background: #fff !important; box-shadow: 0 0 10px rgba(45, 62, 80, 0.1) !important; }
 
-        .content-box { flex: 1 !important; }
-        .content-header { display: flex !important; justify-content: space-between !important; margin-bottom: 6px !important; align-items: center !important; }
-        .content-header h4 { font-size: 15px !important; color: #2D3E50 !important; font-weight: 600 !important; }
-        .content-header span { font-size: 12px !important; color: #a0aec0 !important; }
-        
-        .badge { display: inline-block !important; font-size: 11px !important; background: #f1f5f9 !important; padding: 4px 12px !important; border-radius: 15px !important; color: #64748b !important; }
-        .continue-link { font-size: 12px !important; color: #2D3E50 !important; font-weight: bold !important; text-decoration: none !important; margin-left: 10px !important; }
-
-        /* اقتراحات الذكاء الاصطناعي */
-        .ai-recommendation { margin: 25px 20px !important; background: #f8fbff !important; border-radius: 16px !important; padding: 20px !important; border: 1px solid #edf2f7 !important; }
-        .ai-label { font-size: 11px !important; color: #a0aec0 !important; font-weight: bold !important; letter-spacing: 1px !important; margin-bottom: 15px !important; }
-        .ai-flex { display: flex !important; gap: 15px !important; }
-        .ai-icon { font-size: 26px !important; color: #2D3E50 !important; }
-        .ai-info h4 { font-size: 15px !important; margin-bottom: 6px !important; color: #2D3E50 !important; }
-        .ai-info p { font-size: 13px !important; color: #718096 !important; line-height: 1.5 !important; margin-bottom: 18px !important; }
-        .btn-ai { background: #2D3E50 !important; color: white !important; border: none !important; padding: 12px !important; width: 100% !important; border-radius: 10px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !important; }
-
-        /* الشريط السفلي القابل للسحب (9 أيقونات) */
-        .bottom-nav {
-            position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important;
-            background: white !important; display: flex !important; overflow-x: auto !important;
-            border-top: 1px solid #eee !important; padding: 12px 0 !important; z-index: 1000 !important;
-            -webkit-overflow-scrolling: touch !important;
+        /* إخفاء شريط السحب تماماً ليبقى الشكل نظيفاً */
+        .footer-nav::-webkit-scrollbar {
+            display: none !important;
         }
-        .bottom-nav::-webkit-scrollbar { display: none !important; }
+
         .nav-item {
-            flex: 0 0 20% !important; min-width: 20% !important; text-align: center !important;
-            text-decoration: none !important; color: #94a3b8 !important; display: flex !important;
-            flex-direction: column !important; align-items: center !important;
+            /* هذا السطر هو الأهم لمنع التداخل */
+            flex: 0 0 75px !important; /* جعل عرض كل عنصر ثابت (75 بكسل) ولا ينضغط */
+            text-align: center !important;
+            text-decoration: none !important;
+            color: #a0aec0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 4px !important;
         }
-        .nav-item i { font-size: 20px !important; margin-bottom: 5px !important; }
-        .nav-item span { font-size: 10px !important; }
-        .nav-item.active { color: #2D3E50 !important; font-weight: bold !important; }
-        .active-indicator { width: 30px !important; height: 3px !important; background: #2D3E50 !important; border-radius: 10px !important; margin-top: -12px !important; margin-bottom: 10px !important; }
+
+        .nav-item i { font-size: 20px !important; }
+        .nav-item span { font-size: 10px !important; white-space: nowrap !important; } /* منع النص من الانقسام لسطرين */
+        
+        .nav-item.active { 
+            color: #2D3E50 !important; 
+            font-weight: bold !important; 
+        }
+
+        .active-line {
+            width: 25px !important;
+            height: 3px !important;
+            background: #2D3E50 !important;
+            border-radius: 10px !important;
+            margin-bottom: 5px !important;
+        }
+
     </style>
 </head>
 <body>
@@ -137,62 +125,22 @@
     </div>
 
     <h3 class="section-title">Overall Progress</h3>
-    <div class="progress-section">
-        <div class="bar-bg"><div class="bar-fill"></div></div>
-        <p class="milestone">Next milestone: <strong>Complete React hooks section</strong></p>
+    <div class="progress-wrapper">
+        <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
     </div>
 
     <div class="timeline">
         <div class="timeline-item">
             <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>React Fundamentals</h4><span>2 weeks</span></div>
-                <span class="badge">Course</span>
-            </div>
+            <div style="flex:1"><h4>React Fundamentals</h4><span style="font-size:12px; color:#999">2 weeks</span></div>
         </div>
-
         <div class="timeline-item">
             <div class="dot active"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>Advanced React Development</h4><span>8 weeks</span></div>
-                <div class="bar-bg" style="height: 4px !important; margin-top: 5px !important;"><div class="bar-fill"></div></div>
-                <div style="margin-top: 8px;">
-                    <span class="badge">Course</span>
-                    <a href="#" class="continue-link">Continue →</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>Portfolio Project</h4><span>2 weeks</span></div>
-                <span class="badge">Course</span>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>UI/UX Design Principles</h4><span>8 weeks</span></div>
-                <span class="badge">Course</span>
-            </div>
+            <div style="flex:1"><h4>Advanced React Development</h4><span style="font-size:12px; color:#999">8 weeks</span></div>
         </div>
     </div>
 
-    <div class="ai-recommendation">
-        <div class="ai-label">AI RECOMMENDATIONS</div>
-        <div class="ai-flex">
-            <div class="ai-icon"><i class="fas fa-brain"></i></div>
-            <div class="ai-info">
-                <h4>AI Suggestion</h4>
-                <p>Based on your progress, consider taking a UI/UX course next to complement your React skills.</p>
-                <button class="btn-ai">View Recommended Course</button>
-            </div>
-        </div>
-    </div>
-
-    <nav class="bottom-nav">
+    <nav class="footer-nav">
         <a href="home-logged-in.html" class="nav-item"> <i class="fas fa-home"></i><span>Home</span> </a>
         <a href="all-courses.html" class="nav-item" <i class="fas fa-book-open"></i><span>Courses</span></a>
         <a href="my-path.html" class="nav-item active"> <div class="active-indicator"></div> <i class="fas fa-route"></i><span>My Path</span> </a>
@@ -202,7 +150,7 @@
         <a href="analysis.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
         <a href="students.html" class="nav-link"><i class="fas fa-users"></i><span>Students</span></a>
         <a href="menu.html" class="nav-link"><i class="fas fa-bars"></i><span>Menu</span></a>
-        
+              
     </nav>
 
 </body>
