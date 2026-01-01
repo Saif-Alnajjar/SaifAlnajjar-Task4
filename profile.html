@@ -61,6 +61,67 @@
             width: 30px; height: 3px; background: #2D3E50;
             border-radius: 5px; position: absolute; top: 0;
         }
+        
+    /* الحل النهائي لمنع تداخل الأيقونات وجعلها قابلة للسحب */
+    .footer-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        display: flex !important;
+        flex-wrap: nowrap !important; /* يمنع الأيقونات من النزول لسطر جديد */
+        overflow-x: auto !important; /* تفعيل السحب الأفقي */
+        border-top: 1px solid #eee !important;
+        padding: 12px 0 !important;
+        z-index: 10000 !important;
+        -webkit-overflow-scrolling: touch !important; /* سحب ناعم على أجهزة اللمس */
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+    }
+
+    /* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
+    .footer-nav::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .nav-item {
+        /* تحديد عرض ثابت لكل أيقونة (75 بكسل) يمنع انكماشها أو تداخلها */
+        flex: 0 0 75px !important; 
+        min-width: 75px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        color: #94a3b8 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 5px !important;
+    }
+
+    .nav-item i {
+        font-size: 20px !important;
+        display: block !important;
+    }
+
+    .nav-item span {
+        font-size: 10px !important;
+        white-space: nowrap !important; /* يمنع انقسام النص لسطرين */
+        display: block !important;
+    }
+
+    .nav-item.active {
+        color: #2D3E50 !important;
+        font-weight: bold !important;
+    }
+
+    /* الخط الصغير فوق الأيقونة النشطة */
+    .active-line {
+        width: 25px !important;
+        height: 3px !important;
+        background: #2D3E50 !important;
+        border-radius: 10px !important;
+        margin-bottom: 5px !important;
+    }
+        
     </style>
 </head>
 <body>
