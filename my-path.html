@@ -98,26 +98,69 @@
         .ai-icon { font-size: 26px !important; color: #2D3E50 !important; }
         .ai-info h4 { font-size: 15px !important; margin-bottom: 6px !important; color: #2D3E50 !important; }
         .ai-info p { font-size: 13px !important; color: #718096 !important; line-height: 1.5 !important; margin-bottom: 18px !important; }
-        .btn-ai { background: #2D3E50 !important; color: white !important; border: none !important; padding: 12px !important; width: 100% !important; border-radius: 10px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !important; }
+        .btn-ai { background: #2D3E50 !important; color: white !important; border: none !important; padding: 12px !important; width: 100% !important; border-radius: 10px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !
+            <style>
+    /* الحل النهائي لمنع تداخل الأيقونات وجعلها قابلة للسحب */
+    .footer-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        background: white !important;
+        display: flex !important;
+        flex-wrap: nowrap !important; /* يمنع الأيقونات من النزول لسطر جديد */
+        overflow-x: auto !important; /* تفعيل السحب الأفقي */
+        border-top: 1px solid #eee !important;
+        padding: 12px 0 !important;
+        z-index: 10000 !important;
+        -webkit-overflow-scrolling: touch !important; /* سحب ناعم على أجهزة اللمس */
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+    }
 
-        /* الشريط السفلي القابل للسحب (9 أيقونات) */
-        .bottom-nav {
-            position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important;
-            background: white !important; display: flex !important; overflow-x: auto !important;
-            border-top: 1px solid #eee !important; padding: 12px 0 !important; z-index: 1000 !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        .bottom-nav::-webkit-scrollbar { display: none !important; }
-        .nav-item {
-            flex: 0 0 20% !important; min-width: 20% !important; text-align: center !important;
-            text-decoration: none !important; color: #94a3b8 !important; display: flex !important;
-            flex-direction: column !important; align-items: center !important;
-        }
-        .nav-item i { font-size: 20px !important; margin-bottom: 5px !important; }
-        .nav-item span { font-size: 10px !important; }
-        .nav-item.active { color: #2D3E50 !important; font-weight: bold !important; }
-        .active-indicator { width: 30px !important; height: 3px !important; background: #2D3E50 !important; border-radius: 10px !important; margin-top: -12px !important; margin-bottom: 10px !important; }
-    </style>
+    /* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
+    .footer-nav::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .nav-item {
+        /* تحديد عرض ثابت لكل أيقونة (75 بكسل) يمنع انكماشها أو تداخلها */
+        flex: 0 0 75px !important; 
+        min-width: 75px !important;
+        text-align: center !important;
+        text-decoration: none !important;
+        color: #94a3b8 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 5px !important;
+    }
+
+    .nav-item i {
+        font-size: 20px !important;
+        display: block !important;
+    }
+
+    .nav-item span {
+        font-size: 10px !important;
+        white-space: nowrap !important; /* يمنع انقسام النص لسطرين */
+        display: block !important;
+    }
+
+    .nav-item.active {
+        color: #2D3E50 !important;
+        font-weight: bold !important;
+    }
+
+    /* الخط الصغير فوق الأيقونة النشطة */
+    .active-line {
+        width: 25px !important;
+        height: 3px !important;
+        background: #2D3E50 !important;
+        border-radius: 10px !important;
+        margin-bottom: 5px !important;
+    }
+</style>
+
 </head>
 <body>
 
