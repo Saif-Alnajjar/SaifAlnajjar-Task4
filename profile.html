@@ -6,11 +6,10 @@
     <title>Shifra - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- 1. الأساسيات --- */
+        /* --- 1. التنسيق الأساسي (Sarah Johnson) --- */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 90px; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 90px; overflow-x: hidden; }
 
-        /* --- 2. تنسيق الجزء العلوي (البروفايل) --- */
         .profile-container { padding: 20px; text-align: center; }
         .avatar-circle {
             width: 80px; height: 80px; background: #2D3E50; color: white;
@@ -19,181 +18,121 @@
         }
         .user-name { font-size: 22px; font-weight: bold; margin-bottom: 5px; }
         .user-email { color: #94a3b8; font-size: 14px; text-decoration: underline; margin-bottom: 15px; }
-        .btn-change-photo { 
-            background: #f1f5f9; border: none; padding: 8px 15px; 
-            border-radius: 20px; font-size: 12px; cursor: pointer; color: #64748b;
-        }
+        .btn-change-photo { background: #f1f5f9; border: none; padding: 8px 15px; border-radius: 20px; font-size: 12px; color: #64748b; cursor: pointer; }
 
-        /* --- 3. الكروت البيضاء (App Settings, etc) --- */
-        .settings-menu { margin-top: 30px; padding: 0 10px; }
+        .settings-menu { margin-top: 30px; padding: 0 20px; }
         .card-item {
-            background: white; border-radius: 15px; padding: 20px;
+            background: white; border-radius: 15px; padding: 18px;
             display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 15px; border: 1px solid #edf2f7; cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
         .card-content { display: flex; align-items: center; gap: 15px; }
-        .card-content i { color: #2D3E50; font-size: 18px; }
-        .card-content span { font-size: 16px; font-weight: 500; }
-        .chevron { color: #cbd5e0; font-size: 14px; }
         .logout-text { color: #e53e3e !important; }
 
-        /* --- 4. شريط التنقل السفلي (المصلح) --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: white; display: flex; flex-wrap: nowrap;
-            overflow-x: auto; border-top: 1px solid #eee; padding: 12px 0;
-            z-index: 1000; -webkit-overflow-scrolling: touch;
+        /* --- 2. واجهة الإعدادات الجديدة (تظهر عند الضغط) --- */
+        #settingsOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #f8fbff; z-index: 2000; display: none; /* مخفية */
+            overflow-y: auto; padding-bottom: 100px;
         }
-        .bottom-nav::-webkit-scrollbar { display: none; } /* إخفاء شريط السحب */
+        .overlay-header { display: flex; align-items: center; padding: 20px; background: #fff; margin-bottom: 20px; }
+        .btn-back { background: #f4f6f8; border: none; padding: 10px; border-radius: 8px; cursor: pointer; margin-right: 20px; }
+        
+        .toggle-card { background: #fff; border-radius: 12px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin: 0 20px 15px; border: 1px solid #edf2f7; }
+        .switch { position: relative; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #CBD5E0; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #2D3E50; }
+        input:checked + .slider:before { transform: translateX(20px); }
 
-        .nav-link {
-            flex: 0 0 75px; min-width: 75px; /* مساحة ثابتة لكل أيقونة */
-            text-align: center; text-decoration: none; color: #94a3b8;
-            display: flex; flex-direction: column; align-items: center; gap: 4px;
+        .lang-section { padding: 0 20px; margin: 20px 0; }
+        .lang-select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #edf2f7; background: #fff; }
+
+        .white-list { background: #fff; border-radius: 12px; margin: 0 20px; border: 1px solid #edf2f7; overflow: hidden; }
+        .white-item { display: flex; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #f7fafc; color: #4A5568; text-decoration: none; font-size: 14px; }
+
+        /* --- 3. شريط التنقل السفلي (المحمي) --- */
+        .footer-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
+            padding: 12px 0; z-index: 3000; -webkit-overflow-scrolling: touch;
         }
-        .nav-link i { font-size: 20px; }
-        .nav-link span { font-size: 10px; white-space: nowrap; }
-        .nav-link.active { color: #2D3E50; font-weight: bold; }
-        
-        /* الخط العلوي للأيقونة النشطة */
-        .active-indicator {
-            width: 30px; height: 3px; background: #2D3E50;
-            border-radius: 5px; position: absolute; top: 0;
-        }
-        
-    /* الحل النهائي لمنع تداخل الأيقونات وجعلها قابلة للسحب */
-    .footer-nav {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: white !important;
-        display: flex !important;
-        flex-wrap: nowrap !important; /* يمنع الأيقونات من النزول لسطر جديد */
-        overflow-x: auto !important; /* تفعيل السحب الأفقي */
-        border-top: 1px solid #eee !important;
-        padding: 12px 0 !important;
-        z-index: 10000 !important;
-        -webkit-overflow-scrolling: touch !important; /* سحب ناعم على أجهزة اللمس */
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
-    }
+        .footer-nav::-webkit-scrollbar { display: none; }
+        .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #2D3E50; font-weight: bold; }
+        .active-line { width: 25px; height: 3px; background: #2D3E50; border-radius: 10px; margin-bottom: 4px; }
 
-    /* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
-    .footer-nav::-webkit-scrollbar {
-        display: none !important;
-    }
-
-    .nav-item {
-        /* تحديد عرض ثابت لكل أيقونة (75 بكسل) يمنع انكماشها أو تداخلها */
-        flex: 0 0 75px !important; 
-        min-width: 75px !important;
-        text-align: center !important;
-        text-decoration: none !important;
-        color: #94a3b8 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 5px !important;
-    }
-
-    .nav-item i {
-        font-size: 20px !important;
-        display: block !important;
-    }
-
-    .nav-item span {
-        font-size: 10px !important;
-        white-space: nowrap !important; /* يمنع انقسام النص لسطرين */
-        display: block !important;
-    }
-
-    .nav-item.active {
-        color: #2D3E50 !important;
-        font-weight: bold !important;
-    }
-
-    /* الخط الصغير فوق الأيقونة النشطة */
-    .active-line {
-        width: 25px !important;
-        height: 3px !important;
-        background: #2D3E50 !important;
-        border-radius: 10px !important;
-        margin-bottom: 5px !important;
-    }
-        
     </style>
 </head>
 <body>
 
-    <div class="profile-container">
-        <div class="avatar-circle">S</div>
-        <h2 class="user-name">Sarah Johnson</h2>
-        <p class="user-email">sarah.j@example.com</p>
-        <button class="btn-change-photo">Change Photo</button>
+    <div id="profileMain">
+        <div class="profile-container">
+            <div class="avatar-circle">S</div>
+            <h2 class="user-name">Sarah Johnson</h2>
+            <p class="user-email">sarah.j@example.com</p>
+            <button class="btn-change-photo">Change Photo</button>
+        </div>
+
+        <div class="settings-menu">
+            <div class="card-item" onclick="showSettings()">
+                <div class="card-content"><i class="fas fa-cog"></i><span>App Settings</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card-item">
+                <div class="card-content"><i class="fas fa-user"></i><span>Personal Info</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card-item"><div class="card-content"><i class="fas fa-sign-out-alt logout-text"></i><span class="logout-text">Logout</span></div></div>
+        </div>
     </div>
 
-    <div class="settings-menu">
-        <div class="card-item" onclick="location.href='settings-inner.html'">
-            <div class="card-content">
-                <i class="fas fa-cog"></i>
-                <span>App Settings</span>
-            </div>
-            <i class="fas fa-chevron-right chevron"></i>
+    <div id="settingsOverlay">
+        <div class="overlay-header">
+            <button class="btn-back" onclick="hideSettings()"><i class="fas fa-arrow-left"></i></button>
+            <h3>Settings</h3>
         </div>
 
-        <div class="card-item">
-            <div class="card-content">
-                <i class="fas fa-user"></i>
-                <span>Personal Info</span>
-            </div>
-            <i class="fas fa-chevron-right chevron"></i>
+        <div class="toggle-card">
+            <div><h4>Push Notifications</h4><p style="font-size:11px; color:#94a3b8">Receive reminders</p></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
         </div>
 
-        <div class="card-item">
-            <div class="card-content">
-                <i class="fas fa-sign-out-alt logout-text"></i>
-                <span class="logout-text">Logout</span>
-            </div>
-            <i class="fas fa-chevron-right chevron"></i>
+        <div class="toggle-card">
+            <div><h4>Dark Mode</h4><p style="font-size:11px; color:#94a3b8">Switch theme</p></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
         </div>
+
+        <div class="lang-section">
+            <label style="font-size:14px; font-weight:bold; color:#64748b; display:block; margin-bottom:8px">Language</label>
+            <select class="lang-select"><option>English</option><option>Arabic</option></select>
+        </div>
+
+        <div class="white-list">
+            <a href="#" class="white-item"><span>Change Password</span><i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="white-item"><span>Privacy Policy</span><i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="white-item"><span>Help & Support</span><i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div style="text-align:center; padding:30px; color:#94a3b8; font-size:12px">Shifra Training Center v1.0.0</div>
     </div>
 
     <nav class="footer-nav">
-    <a href="home-logged-in.html" class="nav-item">
-        <i class="fas fa-home"></i><span>Home</span>
-    </a>
-    <a href="all-courses.html" class="nav-item">
-        <i class="fas fa-book-open"></i><span>Courses</span>
-    </a>
-    <a href="my-path.html" class="nav-item">
-        <i class="fas fa-route"></i><span>My Path</span>
-    </a>
+        <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="my-path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="notifications.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span></a>
+        <a href="profile.html" class="nav-item active"><div class="active-line"></div><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="analysis.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="students.html" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="menu.html" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
+    </nav>
 
-    <a href="notifications.html" class="nav-item">
-        <i class="fas fa-bell"></i><span>Alerts</span>
-    </a>
-    <a href="profile.html" class="nav-item active">
-        <div class="active-line"></div>
-        <i class="fas fa-user"></i><span>Profile</span>
-    </a>
-        
-   <a href="dashboard.html" class="nav-item">
-        <i class="fas fa-th-large"></i><span>Dashboard</span>
-    </a>
-        
-    <a href="analysis.html" class="nav-item">
-        <i class="fas fa-chart-line"></i><span>Analysis</span>
-    </a>
-        
-     <a href="students.html" class="nav-item">
-      <i class="fas fa-graduation-cap"></i><span>Students</span>
-    </a>
-    <a href="menu.html" class="nav-item">
-        <i class="fas fa-bars"></i><span>Menu</span>
-    </a>
-</nav>
-
+    <script>
+        function showSettings() { document.getElementById('settingsOverlay').style.display = 'block'; }
+        function hideSettings() { document.getElementById('settingsOverlay').style.display = 'none'; }
+    </script>
 </body>
 </html>
-    
