@@ -3,98 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - Profile</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Shifra - Profile & Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* إعدادات عامة */
+        * { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; font-family: 'Inter', sans-serif !important; }
+        body { background-color: #f8fbff !important; color: #2D3E50 !important; padding-bottom: 100px !important; }
+
+        /* --- واجهة البروفايل الرئيسية --- */
+        .profile-header { padding: 25px 20px !important; background: #fff !important; text-align: center !important; }
+        .user-info-card { text-align: center !important; padding: 30px 20px !important; }
+        .profile-avatar-large { 
+            width: 90px !important; height: 90px !important; background: #2D3E50 !important; 
+            color: white !important; font-size: 32px !important; display: flex !important; 
+            align-items: center !important; justify-content: center !important; 
+            border-radius: 50% !important; margin: 0 auto 15px !important; 
+        }
+        .user-name { font-size: 20px !important; font-weight: 700 !important; margin-bottom: 5px !important; }
+        .user-email { color: #94a3b8 !important; font-size: 14px !important; margin-bottom: 15px !important; }
+        .btn-edit-avatar { background: #f4f6f8 !important; border: none !important; padding: 8px 16px !important; border-radius: 20px !important; font-size: 12px !important; cursor: pointer !important; }
+
+        /* قائمة الخيارات الرئيسية */
+        .settings-list { padding: 0 20px !important; }
+        .settings-item { 
+            background: #fff !important; padding: 18px !important; border-radius: 12px !important; 
+            display: flex !important; justify-content: space-between !important; align-items: center !important; 
+            margin-bottom: 12px !important; cursor: pointer !important; border: 1px solid #edf2f7 !important;
+        }
+        .item-left { display: flex !important; align-items: center !important; gap: 15px !important; font-size: 15px !important; }
+        .item-left i { color: #64748b !important; width: 20px !important; }
+        .logout { color: #e53e3e !important; }
+        .logout i { color: #e53e3e !important; }
+
+        /* --- واجهة الإعدادات الفرعية (التي بالصور) --- */
+        #settingsPageView {
+            display: none; /* مخفية في البداية */
+            position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; background: #f8fbff; z-index: 100;
+        }
+        .sub-header { display: flex !important; align-items: center !important; padding: 20px !important; background: #fff !important; margin-bottom: 20px !important; }
+        .btn-back { background: #f4f6f8 !important; border: none !important; padding: 8px 12px !important; border-radius: 8px !important; margin-right: 60px !important; cursor: pointer !important; }
+
+        /* كروت الـ Toggles كما في الصورة */
+        .toggle-card {
+            background: #fff !important; border-radius: 12px !important; padding: 15px 20px !important;
+            display: flex !important; justify-content: space-between !important; align-items: center !important;
+            margin: 0 20px 15px !important; border: 1px solid #edf2f7 !important;
+        }
+        .toggle-info h4 { font-size: 15px !important; margin-bottom: 4px !important; }
+        .toggle-info p { font-size: 11px !important; color: #94a3b8 !important; }
+
+        /* مفتاح التشغيل Switch */
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #CBD5E0; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #2D3E50; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* القائمة البيضاء كما في الصورة */
+        .white-menu { background: #fff !important; border-radius: 12px !important; margin: 20px !important; border: 1px solid #edf2f7 !important; overflow: hidden !important; }
+        .white-item { display: flex !important; justify-content: space-between !important; padding: 18px !important; border-bottom: 1px solid #f7fafc !important; text-decoration: none !important; color: #4A5568 !important; font-size: 14px !important; }
+        .white-item i { color: #CBD5E0 !important; font-size: 12px !important; }
+
+        /* --- شريط التنقل السفلي المعدل (لا يتغير) --- */
+        .footer-nav {
+            position: fixed !important; bottom: 0 !important; left: 0 !important; width: 100% !important;
+            background: white !important; display: flex !important; overflow-x: auto !important;
+            border-top: 1px solid #eee !important; padding: 12px 0 !important; z-index: 1000 !important;
+        }
+        .footer-nav::-webkit-scrollbar { display: none !important; }
+        .nav-item { flex: 0 0 75px !important; min-width: 75px !important; text-align: center !important; text-decoration: none !important; color: #94a3b8 !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+        .nav-item i { font-size: 20px !important; margin-bottom: 4px !important; }
+        .nav-item span { font-size: 10px !important; }
+        .nav-item.active { color: #2D3E50 !important; font-weight: bold !important; }
+    </style>
 </head>
-<body class="mobile-layout">
+<body>
 
-    <main class="container profile-container">
+    <div id="mainProfileView">
+        <header class="profile-header">
+            <h1 style="font-size: 18px;">Profile</h1>
+        </header>
+
+        <div class="user-info-card">
+            <div class="profile-avatar-large">S</div>
+            <h2 class="user-name">Sarah Johnson</h2>
+            <p class="user-email">sarah.j@example.com</p>
+            <button class="btn-edit-avatar">Change Photo</button>
+        </div>
+
+        <div class="settings-list">
+            <div class="settings-item" onclick="openSettings()">
+                <div class="item-left"><i class="fas fa-cog"></i><span>App Settings</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="settings-item">
+                <div class="item-left"><i class="fas fa-user-circle"></i><span>Personal Info</span></div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="settings-item logout">
+                <div class="item-left"><i class="fas fa-sign-out-alt"></i><span>Logout</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsPageView">
+        <header class="sub-header">
+            <button class="btn-back" onclick="closeSettings()"><i class="fas fa-arrow-left"></i></button>
+            <h2 style="font-size: 18px;">Settings</h2>
+        </header>
+
+        <div class="toggle-card">
+            <div class="toggle-info"><h4>Push Notifications</h4><p>Receive course reminders</p></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+
+        <div class="toggle-card">
+            <div class="toggle-info"><h4>Dark Mode</h4><p>Switch to dark theme</p></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+
+        <div class="white-menu">
+            <a href="#" class="white-item"><span>Change Password</span><i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="white-item"><span>Privacy Settings</span><i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="white-item"><span>Help & Support</span><i class="fas fa-chevron-right"></i></a>
+            <a href="#" class="white-item"><span>Terms of Service</span><i class="fas fa-chevron-right"></i></a>
+        </div>
         
-        <div id="mainProfileView">
-            <header class="profile-header">
-                <h1 class="header-title">Profile</h1>
-            </header>
-
-            <div class="user-info-card">
-                <div class="profile-avatar-large">S</div>
-                <h2 class="user-name">Sarah Johnson</h2>
-                <p class="user-email">sarah.j@example.com</p>
-                <button class="btn-edit-avatar">Change Photo</button>
-            </div>
-
-            <div class="settings-list">
-                <div class="settings-item" onclick="showSubPage('personalInfo')">
-                    <div class="item-left">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Personal Info</span>
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-                <div class="settings-item" onclick="showSubPage('security')">
-                    <div class="item-left">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Security</span>
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-                <div class="settings-item">
-                    <div class="item-left">
-                        <i class="fas fa-question-circle"></i>
-                        <span>Help & Support</span>
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-                <div class="settings-item logout" onclick="location.href='index.html'">
-                    <div class="item-left">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </div>
-                </div>
-            </div>
+        <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 13px;">
+            Shifra Training Center<br>Version 1.0.0
         </div>
+    </div>
 
-        <div id="subPageView" style="display: none;">
-            <header class="page-header-inline">
-                <button class="btn-back" onclick="hideSubPage()"><i class="fas fa-arrow-left"></i></button>
-                <h2 id="subPageTitle">Personal Info</h2>
-            </header>
-
-            <form class="edit-form">
-                <div class="input-group">
-                    <label>Full Name</label>
-                    <input type="text" value="Sarah Johnson">
-                </div>
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" value="sarah.j@example.com">
-                </div>
-                <div class="input-group">
-                    <label>Phone Number</label>
-                    <input type="tel" placeholder="+1 234 567 890">
-                </div>
-                <button type="button" class="btn-save-settings">Save Changes</button>
-            </form>
-        </div>
-
-    </main>
-
-    <nav class="bottom-nav">
+    <nav class="footer-nav">
         <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
         <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
-        <a href="my-Path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
-        <a href="notifications.html" class="nav-item "><i class="fas fa-bell"></i><span>Notifications</span>
+        <a href="my-path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span></a>
         <a href="profile.html" class="nav-item active"><i class="fas fa-user"></i><span>Profile</span></a>
-        <a href="dashboard.html" class="nav-link"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
-        <a href="analysis.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
-        <a href="students.html" class="nav-link"><i class="fas fa-users"></i><span>Students</span></a>
-        <a href="menu.html" class="nav-link"><i class="fas fa-bars"></i><span>Menu</span></a>
-    
-
-     
+        <a href="#" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
     </nav>
 
-    <script src="script.js"></script>
+    <script>
+        function openSettings() {
+            document.getElementById('mainProfileView').style.display = 'none';
+            document.getElementById('settingsPageView').style.display = 'block';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsPageView').style.display = 'none';
+            document.getElementById('mainProfileView').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
