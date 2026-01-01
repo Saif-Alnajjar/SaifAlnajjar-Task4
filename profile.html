@@ -3,125 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - Profile & Settings</title>
+    <title>Shifra - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-    /* الحل النهائي لمنع تداخل الأيقونات وجعلها قابلة للسحب */
-    .footer-nav {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: white !important;
-        display: flex !important;
-        flex-wrap: nowrap !important; /* يمنع الأيقونات من النزول لسطر جديد */
-        overflow-x: auto !important; /* تفعيل السحب الأفقي */
-        border-top: 1px solid #eee !important;
-        padding: 12px 0 !important;
-        z-index: 10000 !important;
-        -webkit-overflow-scrolling: touch !important; /* سحب ناعم على أجهزة اللمس */
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
-    }
+        /* --- 1. الأساسيات --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 90px; }
 
-    /* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
-    .footer-nav::-webkit-scrollbar {
-        display: none !important;
-    }
+        /* --- 2. تنسيق الجزء العلوي (البروفايل) --- */
+        .profile-container { padding: 20px; text-align: center; }
+        .avatar-circle {
+            width: 80px; height: 80px; background: #2D3E50; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin: 20px auto 10px;
+        }
+        .user-name { font-size: 22px; font-weight: bold; margin-bottom: 5px; }
+        .user-email { color: #94a3b8; font-size: 14px; text-decoration: underline; margin-bottom: 15px; }
+        .btn-change-photo { 
+            background: #f1f5f9; border: none; padding: 8px 15px; 
+            border-radius: 20px; font-size: 12px; cursor: pointer; color: #64748b;
+        }
 
-    .nav-item {
-        /* تحديد عرض ثابت لكل أيقونة (75 بكسل) يمنع انكماشها أو تداخلها */
-        flex: 0 0 75px !important; 
-        min-width: 75px !important;
-        text-align: center !important;
-        text-decoration: none !important;
-        color: #94a3b8 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 5px !important;
-    }
+        /* --- 3. الكروت البيضاء (App Settings, etc) --- */
+        .settings-menu { margin-top: 30px; padding: 0 10px; }
+        .card-item {
+            background: white; border-radius: 15px; padding: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; border: 1px solid #edf2f7; cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .card-content { display: flex; align-items: center; gap: 15px; }
+        .card-content i { color: #2D3E50; font-size: 18px; }
+        .card-content span { font-size: 16px; font-weight: 500; }
+        .chevron { color: #cbd5e0; font-size: 14px; }
+        .logout-text { color: #e53e3e !important; }
 
-    .nav-item i {
-        font-size: 20px !important;
-        display: block !important;
-    }
+        /* --- 4. شريط التنقل السفلي (المصلح) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: white; display: flex; flex-wrap: nowrap;
+            overflow-x: auto; border-top: 1px solid #eee; padding: 12px 0;
+            z-index: 1000; -webkit-overflow-scrolling: touch;
+        }
+        .bottom-nav::-webkit-scrollbar { display: none; } /* إخفاء شريط السحب */
 
-    .nav-item span {
-        font-size: 10px !important;
-        white-space: nowrap !important; /* يمنع انقسام النص لسطرين */
-        display: block !important;
-    }
-
-    .nav-item.active {
-        color: #2D3E50 !important;
-        font-weight: bold !important;
-    }
-
-    /* الخط الصغير فوق الأيقونة النشطة */
-    .active-line {
-        width: 25px !important;
-        height: 3px !important;
-        background: #2D3E50 !important;
-        border-radius: 10px !important;
-        margin-bottom: 5px !important;
-    }
-</style>
-
+        .nav-link {
+            flex: 0 0 75px; min-width: 75px; /* مساحة ثابتة لكل أيقونة */
+            text-align: center; text-decoration: none; color: #94a3b8;
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+        }
+        .nav-link i { font-size: 20px; }
+        .nav-link span { font-size: 10px; white-space: nowrap; }
+        .nav-link.active { color: #2D3E50; font-weight: bold; }
+        
+        /* الخط العلوي للأيقونة النشطة */
+        .active-indicator {
+            width: 30px; height: 3px; background: #2D3E50;
+            border-radius: 5px; position: absolute; top: 0;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="mainProfileView">
-        <header class="profile-header">
-            <h1 style="font-size: 18px;">Profile</h1>
-        </header>
-
-        <div class="user-info-card">
-            <div class="profile-avatar-large">S</div>
-            <h2 class="user-name">Sarah Johnson</h2>
-            <p class="user-email">sarah.j@example.com</p>
-            <button class="btn-edit-avatar">Change Photo</button>
-        </div>
-
-        <div class="settings-list">
-            <div class="settings-item" onclick="openSettings()">
-                <div class="item-left"><i class="fas fa-cog"></i><span>App Settings</span></div>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="settings-item">
-                <div class="item-left"><i class="fas fa-user-circle"></i><span>Personal Info</span></div>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="settings-item logout">
-                <div class="item-left"><i class="fas fa-sign-out-alt"></i><span>Logout</span></div>
-            </div>
-        </div>
+    <div class="profile-container">
+        <div class="avatar-circle">S</div>
+        <h2 class="user-name">Sarah Johnson</h2>
+        <p class="user-email">sarah.j@example.com</p>
+        <button class="btn-change-photo">Change Photo</button>
     </div>
 
-    <div id="settingsPageView">
-        <header class="sub-header">
-            <button class="btn-back" onclick="closeSettings()"><i class="fas fa-arrow-left"></i></button>
-            <h2 style="font-size: 18px;">Settings</h2>
-        </header>
-
-        <div class="toggle-card">
-            <div class="toggle-info"><h4>Push Notifications</h4><p>Receive course reminders</p></div>
-            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+    <div class="settings-menu">
+        <div class="card-item" onclick="location.href='settings-inner.html'">
+            <div class="card-content">
+                <i class="fas fa-cog"></i>
+                <span>App Settings</span>
+            </div>
+            <i class="fas fa-chevron-right chevron"></i>
         </div>
 
-        <div class="toggle-card">
-            <div class="toggle-info"><h4>Dark Mode</h4><p>Switch to dark theme</p></div>
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        <div class="card-item">
+            <div class="card-content">
+                <i class="fas fa-user"></i>
+                <span>Personal Info</span>
+            </div>
+            <i class="fas fa-chevron-right chevron"></i>
         </div>
 
-        <div class="white-menu">
-            <a href="#" class="white-item"><span>Change Password</span><i class="fas fa-chevron-right"></i></a>
-            <a href="#" class="white-item"><span>Privacy Settings</span><i class="fas fa-chevron-right"></i></a>
-            <a href="#" class="white-item"><span>Help & Support</span><i class="fas fa-chevron-right"></i></a>
-            <a href="#" class="white-item"><span>Terms of Service</span><i class="fas fa-chevron-right"></i></a>
-        </div>
-        
-        <div style="text-align: center; padding: 20px; color: #94a3b8; font-size: 13px;">
-            Shifra Training Center<br>Version 1.0.0
+        <div class="card-item">
+            <div class="card-content">
+                <i class="fas fa-sign-out-alt logout-text"></i>
+                <span class="logout-text">Logout</span>
+            </div>
+            <i class="fas fa-chevron-right chevron"></i>
         </div>
     </div>
 
@@ -159,16 +132,7 @@
         <i class="fas fa-bars"></i><span>Menu</span>
     </a>
 </nav>
-    <script>
-        function openSettings() {
-            document.getElementById('mainProfileView').style.display = 'none';
-            document.getElementById('settingsPageView').style.display = 'block';
-        }
 
-        function closeSettings() {
-            document.getElementById('settingsPageView').style.display = 'none';
-            document.getElementById('mainProfileView').style.display = 'block';
-        }
-    </script>
 </body>
 </html>
+    
