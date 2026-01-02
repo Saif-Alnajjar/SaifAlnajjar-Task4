@@ -4,164 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shifra - All Courses</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        * {
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 120px; }
+
+        /* الهيدر العلوي */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #fff; }
+        .page-title { padding: 10px 20px; font-size: 24px; font-weight: bold; }
+
+        /* --- 1. قسم الفلاتر (Filters) --- */
+        .filter-section { padding: 0 20px 20px; }
+        .filter-group { margin-bottom: 15px; }
+        .filter-label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 8px; color: #64748b; }
+        .select-box { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #edf2f7; background: #fff; color: #2D3E50; appearance: none; }
+        .flex-filters { display: flex; gap: 10px; }
+
+        /* --- 2. قائمة الكورسات --- */
+        .course-card { 
+            background: white; margin: 0 20px 15px; padding: 15px; 
+            border-radius: 15px; border: 1px solid #edf2f7; display: flex; gap: 15px; align-items: center;
         }
+        .course-img { width: 90px; height: 90px; border-radius: 12px; object-fit: cover; }
+        .course-info { flex: 1; }
+        .course-info h4 { font-size: 15px; margin-bottom: 5px; }
+        .course-info p { font-size: 12px; color: #94a3b8; margin-bottom: 10px; }
+        .badge { font-size: 10px; padding: 4px 10px; border-radius: 20px; float: right; }
+        .badge-online { background: #e6fffa; color: #38b2ac; }
+        .badge-person { background: #ebf8ff; color: #3182ce; }
+        .btn-group { display: flex; gap: 8px; }
+        .btn-sm { padding: 6px 15px; border-radius: 8px; font-size: 11px; border: 1px solid #edf2f7; background: #fff; cursor: pointer; }
+        .btn-book { background: #2D3E50; color: white; border: none; }
 
-        body {
-            background-color: #ffffff !important;
-            padding-bottom: 90px !important; /* مساحة كافية للشريط السفلي */
+        /* --- 3. سجلات التسجيل (Enrollments Table) --- */
+        .enrollment-section { background: white; margin: 20px; padding: 20px; border-radius: 20px; border: 1px solid #edf2f7; }
+        .tabs { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 8px 15px; border-radius: 20px; background: #f1f5f9; color: #64748b; font-size: 11px; border: none; white-space: nowrap; }
+        .tab-btn.active { background: #2D3E50; color: white; }
+
+        .search-bar { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #edf2f7; margin-bottom: 15px; background: #f8fbff; }
+
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 400px; }
+        th { text-align: left; font-size: 12px; color: #94a3b8; padding: 10px 5px; border-bottom: 1px solid #f1f5f9; }
+        td { padding: 12px 5px; font-size: 12px; border-bottom: 1px solid #f8fbff; }
+        .uid-text { color: #3182ce; font-weight: bold; }
+
+        /* شريط التنقل السفلي الموحد */
+        .footer-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
+            padding: 12px 0; z-index: 1000;
         }
-
-        /* الهيدر */
-        .courses-header {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 20px !important;
-        }
-
-        .courses-header h2 { font-size: 20px !important; color: #2D3E50 !important; }
-
-        .close-btn {
-            background: #f4f6f8 !important;
-            border: none !important;
-            width: 36px !important;
-            height: 36px !important;
-            border-radius: 8px !important;
-            cursor: pointer !important;
-            color: #2D3E50 !important;
-        }
-
-        /* الفلاتر */
-        .filters-section { padding: 0 20px !important; margin-bottom: 20px !important; }
-        .filter-group { margin-bottom: 12px !important; }
-        .filter-group label { display: block !important; font-size: 14px !important; font-weight: 600 !important; margin-bottom: 5px !important; }
-        .custom-select {
-            width: 100% !important;
-            padding: 12px !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 12px !important;
-            background: #fff !important;
-            font-size: 14px !important;
-        }
-        .filter-row { display: flex !important; gap: 10px !important; }
-        .filter-row .filter-group { flex: 1 !important; }
-
-        /* الكروت */
-        .courses-list { padding: 0 20px !important; }
-        .course-card {
-            display: flex !important;
-            background: #F8FAFC !important;
-            border-radius: 16px !important;
-            padding: 12px !important;
-            margin-bottom: 15px !important;
-            border: 1px solid #f1f5f9 !important;
-        }
-        .card-img { width: 90px !important; height: 90px !important; border-radius: 12px !important; object-fit: cover !important; }
-        .card-info { flex: 1 !important; padding-left: 12px !important; }
-        .title-row { display: flex !important; justify-content: space-between !important; }
-        .badge { font-size: 10px !important; padding: 3px 8px !important; border-radius: 20px !important; }
-        .online { background: #DCFCE7 !important; color: #166534 !important; }
-        .in-person { background: #DBEAFE !important; color: #1E40AF !important; }
-        .instructor { font-size: 12px !important; color: #94A3B8 !important; margin: 4px 0 !important; }
-        .card-btns { display: flex !important; gap: 8px !important; margin-top: 8px !important; }
-        .btn-details, .btn-book { flex: 1 !important; padding: 7px !important; border-radius: 8px !important; font-size: 11px !important; cursor: pointer; font-weight: 600 !important; }
-        .btn-details { background: #fff !important; border: 1px solid #E2E8F0 !important; }
-        .btn-book { background: #2D3E50 !important; color: white !important; border: none !important; }
-
-        /* --- الشريط السفلي القابل للسحب (المعدل بـ 9 أزرار) --- */
-        .bottom-nav {
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            background: white !important;
-            display: flex !important;
-            overflow-x: auto !important; /* تفعيل السحب */
-            border-top: 1px solid #eee !important;
-            padding: 12px 0 !important;
-            z-index: 99999 !important;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
-            -webkit-overflow-scrolling: touch !important;
-        }
-        
-        /* إخفاء شريط السحب */
-        .bottom-nav::-webkit-scrollbar { display: none !important; }
-
-        .nav-item {
-            flex: 0 0 20% !important; /* يظهر 5 أيقونات فقط والباقي سحب */
-            min-width: 20% !important;
-            text-align: center !important;
-            text-decoration: none !important;
-            color: #94a3b8 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-        }
-
-        .nav-item i { font-size: 20px !important; margin-bottom: 4px !important; }
-        .nav-item span { font-size: 10px !important; }
-        .nav-item.active { color: #2D3E50 !important; font-weight: bold !important; }
+        .footer-nav::-webkit-scrollbar { display: none; }
+        .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #2D3E50; font-weight: bold; }
+        .active-line { width: 25px; height: 3px; background: #2D3E50; border-radius: 10px; margin-bottom: 4px; }
     </style>
 </head>
 <body>
 
-    <header class="courses-header">
-        <h2>All Courses</h2>
-        <button class="close-btn" onclick="window.location.href='home-logged-in.html'">
-            <i class="fas fa-times"></i>
-        </button>
+    <header class="header">
+        <div style="font-size: 20px;"><i class="fas fa-chevron-left"></i></div>
+        <div style="font-weight: bold;">Courses</div>
+        <div style="font-size: 20px;"><i class="fas fa-times"></i></div>
     </header>
 
-    <section class="filters-section">
+    <div class="filter-section">
         <div class="filter-group">
-            <label>Category</label>
-            <select class="custom-select"><option>All Category</option></select>
+            <label class="filter-label">Category</label>
+            <select class="select-box"><option>All Category</option></select>
         </div>
-        <div class="filter-row">
-            <div class="filter-group"><label>Level</label><select class="custom-select"><option>All Levels</option></select></div>
-            <div class="filter-group"><label>&nbsp;</label><select class="custom-select"><option>All Types</option></select></div>
-        </div>
-        <div class="filter-group"><select class="custom-select"><option>Most Popular</option></select></div>
-    </section>
-
-    <section class="courses-list">
-        <div class="course-card">
-            <img src="images/IMG_5537.jpeg" class="card-img">
-            <div class="card-info">
-                <div class="title-row"><h4>Course Title 1</h4><span class="badge online">Online</span></div>
-                <p class="instructor">Instructor Name . 4.8.</p>
-                <div class="card-btns"><button class="btn-details">Details</button><button class="btn-book">Book</button></div>
+        <div class="flex-filters">
+            <div class="filter-group" style="flex:1">
+                <label class="filter-label">Level</label>
+                <select class="select-box"><option>All Levels</option></select>
+            </div>
+            <div class="filter-group" style="flex:1">
+                <label class="filter-label">Type</label>
+                <select class="select-box"><option>All Types</option></select>
             </div>
         </div>
-        <div class="course-card">
-            <img src="images/IMG_5538.jpeg" class="card-img">
-            <div class="card-info">
-                <div class="title-row"><h4>Course Title 2</h4><span class="badge in-person">In-person</span></div>
-                <p class="instructor">Instructor Name . 4.8.</p>
-                <div class="card-btns"><button class="btn-details">Details</button><button class="btn-book">Book</button></div>
+        <select class="select-box"><option>Most Popular</option></select>
+    </div>
+
+    <div class="course-card">
+        <img src="course1.jpg" class="course-img" alt="Course">
+        <div class="course-info">
+            <span class="badge badge-online">Online</span>
+            <h4>Course Title 1</h4>
+            <p>Instructor Name . 4.8</p>
+            <div class="btn-group">
+                <button class="btn-sm">Details</button>
+                <button class="btn-sm btn-book">Book</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <nav class="bottom-nav">
+    <div class="course-card">
+        <img src="course2.jpg" class="course-img" alt="Course">
+        <div class="course-info">
+            <span class="badge badge-person">In-person</span>
+            <h4>Course Title 2</h4>
+            <p>Instructor Name . 4.8</p>
+            <div class="btn-group">
+                <button class="btn-sm">Details</button>
+                <button class="btn-sm btn-book">Book</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="enrollment-section">
+        <h3 style="margin-bottom: 15px;">Course Enrollments</h3>
+        <div class="tabs">
+            <button class="tab-btn active">All Enrollments</button>
+            <button class="tab-btn">Pending</button>
+            <button class="tab-btn">In Progress</button>
+            <button class="tab-btn">Completed</button>
+        </div>
+        
+        <input type="text" class="search-bar" placeholder="Search Enrollment ID...">
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>Enrollment ID</th>
+                        <th>Date</th>
+                        <th>Student Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="uid-text">UID446423</td>
+                        <td>2020/4/27</td>
+                        <td>John Mayer</td>
+                    </tr>
+                    <tr style="background: #fff5f5;"> <td><input type="checkbox"></td>
+                        <td class="uid-text">UID446423</td>
+                        <td>2020/4/27</td>
+                        <td>John Mayer</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="uid-text">UID446423</td>
+                        <td>2020/4/27</td>
+                        <td>John Mayer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button class="btn-sm" style="flex:1; padding:12px">Cancel</button>
+            <button class="btn-sm btn-book" style="flex:1; background:#3182ce">Save</button>
+        </div>
+    </div>
+
+    <nav class="footer-nav">
         <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
-        <a href="all-courses.html" class="nav-item active"><i class="fas fa-book-open"></i><span>Courses</span></a>
-        <a href="my-Path.html" class="nav-link"><i class="fas fa-route"></i><span>My Path</span></a>
-        <a href="notifications.html" class="nav-link"><i class="fas fa-bell"></i><span>Notifications</span></a>
-        <a href="profile.html" class="nav-link"><i class="fas fa-user"></i><span>Profile</span></a>
-        <a href="dashboard.html" class="nav-link"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
-        <a href="analysis.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
-        <a href="students.html" class="nav-link"><i class="fas fa-users"></i><span>Students</span></a>
-        <a href="menu.html" class="nav-link"><i class="fas fa-bars"></i><span>Menu</span></a>
+        <a href="all-courses.html" class="nav-item active"><div class="active-line"></div><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="my-path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="notifications.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="analysis.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="students.html" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="menu.html" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
     </nav>
 
 </body>
