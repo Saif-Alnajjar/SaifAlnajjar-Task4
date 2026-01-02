@@ -3,271 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shifra - My Path (Logged In)</title>
-    
+    <title>Shifra - My Learning Path</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
-        /* إعدادات الصفحة الأساسية */
-        * {
-            box-sizing: border-box !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        }
+        /* --- الأساسيات --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 110px; }
 
-        body {
-            background-color: #ffffff !important;
-            color: #2D3E50 !important;
-            padding-bottom: 90px !important; /* مساحة للشريط السفلي */
-            overflow-x: hidden !important;
-        }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #fff; }
+        .page-title { padding: 10px 20px; font-size: 24px; font-weight: bold; color: #2D3E50; }
 
-        /* الهيدر العلوي */
-        .header {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 20px !important;
+        /* --- كرت الرحلة التعليمية (البانر العلوي) --- */
+        .journey-card {
+            background: linear-gradient(135deg, #2D3E50 0%, #64748b 100%);
+            margin: 0 20px 25px; padding: 25px; border-radius: 20px; color: white;
+            box-shadow: 0 10px 20px rgba(45, 62, 80, 0.15);
         }
-        .header h2 { font-size: 20px !important; color: #2D3E50 !important; font-weight: 600 !important; }
-        .settings-icon {
-            background: #f4f6f8 !important;
-            width: 38px !important;
-            height: 38px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            border-radius: 10px !important;
-            color: #2D3E50 !important;
-            cursor: pointer !important;
-        }
-
-        /* الكرت المتدرج (Hero Card) */
-        .hero-card {
-            margin: 0 20px 25px !important;
-            background: linear-gradient(135deg, #3d4e81 0%, #575d85 100%) !important;
-            border-radius: 16px !important;
-            padding: 25px !important;
-            color: white !important;
-            text-align: center !important;
-            box-shadow: 0 8px 20px rgba(61, 78, 129, 0.2) !important;
-        }
-        .hero-card h3 { font-size: 18px !important; margin-bottom: 5px !important; font-weight: 500 !important; }
-        .hero-card p { font-size: 12px !important; margin-bottom: 25px !important; opacity: 0.8 !important; }
+        .journey-card h2 { font-size: 18px; margin-bottom: 5px; opacity: 0.9; }
+        .journey-card p { font-size: 12px; margin-bottom: 25px; opacity: 0.7; }
         
-        .stats-container { display: flex !important; justify-content: space-around !important; }
-        .stat-box h4 { font-size: 24px !important; margin-bottom: 2px !important; font-weight: bold !important; }
-        .stat-box span { font-size: 12px !important; opacity: 0.8 !important; }
+        .stats-row { display: flex; justify-content: space-between; text-align: center; }
+        .stat-item h3 { font-size: 22px; margin-bottom: 2px; }
+        .stat-item span { font-size: 11px; opacity: 0.8; text-transform: uppercase; }
 
-        /* التقدم العام */
-        .section-title { font-size: 16px !important; font-weight: bold !important; margin: 0 20px 12px !important; color: #2D3E50 !important; }
-        .progress-section { padding: 0 20px !important; margin-bottom: 30px !important; }
-        .bar-bg { background: #edf2f7 !important; height: 10px !important; border-radius: 20px !important; margin-bottom: 10px !important; }
-        .bar-fill { background: #2D3E50 !important; width: 35% !important; height: 100% !important; border-radius: 20px !important; }
-        .milestone { font-size: 13px !important; color: #718096 !important; }
-        .milestone strong { color: #2D3E50 !important; }
+        /* --- التقدم الإجمالي (Overall Progress) --- */
+        .progress-section { padding: 0 20px 25px; }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .progress-header span { font-size: 14px; font-weight: bold; }
+        .progress-bar-bg { width: 100%; height: 8px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill { width: 35%; height: 100%; background: #2D3E50; border-radius: 10px; }
+        .next-milestone { font-size: 12px; color: #64748b; margin-top: 10px; }
+        .next-milestone b { color: #2D3E50; }
 
-        /* المسار الزمني (Timeline) */
-        .timeline { padding: 0 20px !important; position: relative !important; }
-        .timeline::before {
-            content: ''; position: absolute !important; left: 35px !important; top: 10px !important;
-            bottom: 10px !important; width: 1.5px !important; background: #e2e8f0 !important;
-        }
-        .timeline-item { display: flex !important; gap: 20px !important; margin-bottom: 30px !important; position: relative !important; }
+        /* --- قائمة المسار (Timeline) --- */
+        .path-timeline { padding: 0 20px; position: relative; }
+        .course-node { display: flex; gap: 15px; margin-bottom: 25px; position: relative; }
         
-        .dot {
-            width: 32px !important; height: 32px !important; background: #f8fafc !important;
-            border: 1px solid #e2e8f0 !important; border-radius: 6px !important;
-            flex-shrink: 0 !important; z-index: 2 !important;
+        /* الخط الواصل بين الدوائر */
+        .course-node:not(:last-child)::after {
+            content: ''; position: absolute; left: 17px; top: 40px;
+            width: 2px; height: calc(100% - 15px); background: #e2e8f0;
         }
-        .dot.active { border-color: #2D3E50 !important; background: #fff !important; box-shadow: 0 0 10px rgba(45, 62, 80, 0.1) !important; }
 
-        .content-box { flex: 1 !important; }
-        .content-header { display: flex !important; justify-content: space-between !important; margin-bottom: 6px !important; align-items: center !important; }
-        .content-header h4 { font-size: 15px !important; color: #2D3E50 !important; font-weight: 600 !important; }
-        .content-header span { font-size: 12px !important; color: #a0aec0 !important; }
-        
-        .badge { display: inline-block !important; font-size: 11px !important; background: #f1f5f9 !important; padding: 4px 12px !important; border-radius: 15px !important; color: #64748b !important; }
-        .continue-link { font-size: 12px !important; color: #2D3E50 !important; font-weight: bold !important; text-decoration: none !important; margin-left: 10px !important; }
+        .node-icon { 
+            width: 36px; height: 36px; background: #fff; border: 2px solid #e2e8f0; 
+            border-radius: 8px; z-index: 2; display: flex; align-items: center; justify-content: center;
+        }
+        .node-icon.completed { background: #2D3E50; border-color: #2D3E50; color: white; }
 
-        /* اقتراحات الذكاء الاصطناعي */
-        .ai-recommendation { margin: 25px 20px !important; background: #f8fbff !important; border-radius: 16px !important; padding: 20px !important; border: 1px solid #edf2f7 !important; }
-        .ai-label { font-size: 11px !important; color: #a0aec0 !important; font-weight: bold !important; letter-spacing: 1px !important; margin-bottom: 15px !important; }
-        .ai-flex { display: flex !important; gap: 15px !important; }
-        .ai-icon { font-size: 26px !important; color: #2D3E50 !important; }
-        .ai-info h4 { font-size: 15px !important; margin-bottom: 6px !important; color: #2D3E50 !important; }
-        .ai-info p { font-size: 13px !important; color: #718096 !important; line-height: 1.5 !important; margin-bottom: 18px !important; }
-        .btn-ai { background: #2D3E50 !important; color: white !important; border: none !important; padding: 12px !important; width: 100% !important; border-radius: 10px !important; font-size: 13px !important; font-weight: 600 !important; cursor: pointer !
-            <style>
-    /* الحل النهائي لمنع تداخل الأيقونات وجعلها قابلة للسحب */
-    .footer-nav {
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: white !important;
-        display: flex !important;
-        flex-wrap: nowrap !important; /* يمنع الأيقونات من النزول لسطر جديد */
-        overflow-x: auto !important; /* تفعيل السحب الأفقي */
-        border-top: 1px solid #eee !important;
-        padding: 12px 0 !important;
-        z-index: 10000 !important;
-        -webkit-overflow-scrolling: touch !important; /* سحب ناعم على أجهزة اللمس */
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
-    }
+        .course-content { flex: 1; background: white; padding: 15px; border-radius: 12px; border: 1px solid #edf2f7; }
+        .course-content h4 { font-size: 15px; margin-bottom: 5px; }
+        .course-meta { display: flex; justify-content: space-between; align-items: center; }
+        .course-meta span { font-size: 12px; color: #94a3b8; }
+        .btn-course { font-size: 11px; padding: 4px 10px; border-radius: 6px; border: 1px solid #edf2f7; background: #f8fbff; text-decoration: none; color: #2D3E50; }
+        .btn-continue { color: #3182ce; font-weight: bold; }
 
-    /* إخفاء شريط التمرير ليبقى التصميم نظيفاً */
-    .footer-nav::-webkit-scrollbar {
-        display: none !important;
-    }
+        /* --- كرت اقتراح الذكاء الاصطناعي --- */
+        .ai-card {
+            background: #f0f7ff; margin: 20px; padding: 20px; border-radius: 15px;
+            border: 1px solid #dbeafe; display: flex; gap: 15px; align-items: flex-start;
+        }
+        .ai-icon { font-size: 24px; color: #3182ce; }
+        .ai-text h4 { font-size: 14px; margin-bottom: 5px; color: #1e40af; }
+        .ai-text p { font-size: 12px; color: #60a5fa; line-height: 1.5; margin-bottom: 15px; }
+        .btn-ai { background: #2D3E50; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 12px; cursor: pointer; }
 
-    .nav-item {
-        /* تحديد عرض ثابت لكل أيقونة (75 بكسل) يمنع انكماشها أو تداخلها */
-        flex: 0 0 75px !important; 
-        min-width: 75px !important;
-        text-align: center !important;
-        text-decoration: none !important;
-        color: #94a3b8 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 5px !important;
-    }
-
-    .nav-item i {
-        font-size: 20px !important;
-        display: block !important;
-    }
-
-    .nav-item span {
-        font-size: 10px !important;
-        white-space: nowrap !important; /* يمنع انقسام النص لسطرين */
-        display: block !important;
-    }
-
-    .nav-item.active {
-        color: #2D3E50 !important;
-        font-weight: bold !important;
-    }
-
-    /* الخط الصغير فوق الأيقونة النشطة */
-    .active-line {
-        width: 25px !important;
-        height: 3px !important;
-        background: #2D3E50 !important;
-        border-radius: 10px !important;
-        margin-bottom: 5px !important;
-    }
-</style>
-
+        /* --- شريط التنقل السفلي --- */
+        .footer-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
+            padding: 12px 0; z-index: 1000; -webkit-overflow-scrolling: touch;
+        }
+        .footer-nav::-webkit-scrollbar { display: none; }
+        .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #2D3E50; font-weight: bold; }
+        .active-line { width: 25px; height: 3px; background: #2D3E50; border-radius: 10px; margin-bottom: 4px; }
+    </style>
 </head>
 <body>
 
     <header class="header">
-        <h2>My Learning Path</h2>
-        <div class="settings-icon"><i class="fas fa-cog"></i></div>
+        <div style="font-size: 20px; color: #2D3E50;"><i class="fas fa-chevron-left"></i></div>
+        <div style="font-size: 20px; color: #2D3E50;"><i class="fas fa-cog"></i></div>
     </header>
 
-    <div class="hero-card">
-        <h3>Your Personalized Journey</h3>
+    <h1 class="page-title">My Learning Path</h1>
+
+    <div class="journey-card">
+        <h2>Your Personalized Journey</h2>
         <p>AI-powered learning path coming soon...</p>
-        <div class="stats-container">
-            <div class="stat-box"><h4>4</h4><span>Courses</span></div>
-            <div class="stat-box"><h4>12</h4><span>Weeks</span></div>
-            <div class="stat-box"><h4>35%</h4><span>Progress</span></div>
+        <div class="stats-row">
+            <div class="stat-item"><h3>4</h3><span>Courses</span></div>
+            <div class="stat-item"><h3>12</h3><span>Weeks</span></div>
+            <div class="stat-item"><h3>35%</h3><span>Progress</span></div>
         </div>
     </div>
 
-    <h3 class="section-title">Overall Progress</h3>
     <div class="progress-section">
-        <div class="bar-bg"><div class="bar-fill"></div></div>
-        <p class="milestone">Next milestone: <strong>Complete React hooks section</strong></p>
+        <div class="progress-header">
+            <span>Overall Progress</span>
+            <span>35%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill"></div>
+        </div>
+        <p class="next-milestone">Next milestone: <b>Complete React hooks section</b></p>
     </div>
 
-    <div class="timeline">
-        <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>React Fundamentals</h4><span>2 weeks</span></div>
-                <span class="badge">Course</span>
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <div class="dot active"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>Advanced React Development</h4><span>8 weeks</span></div>
-                <div class="bar-bg" style="height: 4px !important; margin-top: 5px !important;"><div class="bar-fill"></div></div>
-                <div style="margin-top: 8px;">
-                    <span class="badge">Course</span>
-                    <a href="#" class="continue-link">Continue →</a>
+    <div class="path-timeline">
+        <div class="course-node">
+            <div class="node-icon completed"><i class="fas fa-check"></i></div>
+            <div class="course-content">
+                <h4>React Fundamentals</h4>
+                <div class="course-meta">
+                    <span>2 weeks</span>
+                    <a href="#" class="btn-course">Course</a>
                 </div>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>Portfolio Project</h4><span>2 weeks</span></div>
-                <span class="badge">Course</span>
+        <div class="course-node">
+            <div class="node-icon"><i class="fas fa-play" style="font-size: 12px; color: #cbd5e0;"></i></div>
+            <div class="course-content">
+                <h4>Advanced React Development</h4>
+                <div style="height: 4px; background: #e2e8f0; border-radius: 10px; margin: 10px 0; overflow: hidden;">
+                    <div style="width: 35%; height: 100%; background: #2D3E50;"></div>
+                </div>
+                <div class="course-meta">
+                    <span>35% complete</span>
+                    <a href="#" class="btn-course btn-continue">Continue <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="dot"></div>
-            <div class="content-box">
-                <div class="content-header"><h4>UI/UX Design Principles</h4><span>8 weeks</span></div>
-                <span class="badge">Course</span>
+        <div class="course-node">
+            <div class="node-icon"></div>
+            <div class="course-content">
+                <h4>Portfolio Project</h4>
+                <div class="course-meta">
+                    <span>2 weeks</span>
+                    <a href="#" class="btn-course">Course</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-node">
+            <div class="node-icon"></div>
+            <div class="course-content">
+                <h4>UI/UX Design Principles</h4>
+                <div class="course-meta">
+                    <span>8 weeks</span>
+                    <a href="#" class="btn-course">Course</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="ai-recommendation">
-        <div class="ai-label">AI RECOMMENDATIONS</div>
-        <div class="ai-flex">
-            <div class="ai-icon"><i class="fas fa-brain"></i></div>
-            <div class="ai-info">
-                <h4>AI Suggestion</h4>
-                <p>Based on your progress, consider taking a UI/UX course next to complement your React skills.</p>
-                <button class="btn-ai">View Recommended Course</button>
-            </div>
+    <div class="ai-card">
+        <div class="ai-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="ai-text">
+            <h4>AI Suggestion</h4>
+            <p>Based on your progress in React development, consider taking a UI/UX course next to complement your skills.</p>
+            <button class="btn-ai">View Recommended Course</button>
         </div>
     </div>
 
     <nav class="footer-nav">
-    <a href="home-logged-in.html" class="nav-item">
-        <i class="fas fa-home"></i><span>Home</span>
-    </a>
-    <a href="all-courses.html" class="nav-item">
-        <i class="fas fa-book-open"></i><span>Courses</span>
-    </a>
-    <a href="my-path.html" class="nav-item active">
-       <div class="active-line"></div> <i class="fas fa-route"></i><span>My Path</span>
-    </a>
+        <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="my-path.html" class="nav-item active"><div class="active-line"></div><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="notifications.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="analysis.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="students.html" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="menu.html" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
+    </nav>
 
-    <a href="notifications.html" class="nav-item">
-        <i class="fas fa-bell"></i><span>Alerts</span>
-    </a>
-    <a href="profile.html" class="nav-item">
-        <i class="fas fa-user"></i><span>Profile</span>
-    </a>
-        
-   <a href="dashboard.html" class="nav-item">
-        <i class="fas fa-th-large"></i><span>Dashboard</span>
-    </a>
-        
-    <a href="analysis.html" class="nav-item">
-        <i class="fas fa-chart-line"></i><span>Analysis</span>
-    </a>
-        
-     <a href="students.html" class="nav-item">
-      <i class="fas fa-graduation-cap"></i><span>Students</span>
-    </a>
-    <a href="menu.html" class="nav-item">
-        <i class="fas fa-bars"></i><span>Menu</span>
-    </a>
-</nav>
 </body>
 </html>
-
