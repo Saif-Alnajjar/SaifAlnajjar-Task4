@@ -4,36 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shifra - Notifications</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body class="mobile-layout">
+    <style>
+        /* --- الأساسيات الموحدة --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 110px; }
 
-    <header class="page-header">
-        <h1 class="header-title">Notifications</h1>
+        .header { display: flex; align-items: center; padding: 20px; background: #fff; border-bottom: 1px solid #f1f5f9; }
+        .back-btn { font-size: 18px; color: #2D3E50; margin-right: 20px; text-decoration: none; }
+        .page-title { font-size: 20px; font-weight: bold; }
+
+        /* --- حاوية التنبيهات الفارغة (كما في الصورة) --- */
+        .empty-notifications {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .empty-card {
+            background: #fff;
+            width: 100%;
+            padding: 60px 20px;
+            border-radius: 20px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .empty-card h2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2D3E50;
+            margin-bottom: 15px;
+        }
+
+        .empty-card p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        /* إضافة أيقونة جمالية اختيارية (مصباح أو تنبيه) */
+        .bell-icon-wrapper {
+            font-size: 40px;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        /* --- شريط التنقل السفلي الموحد (9 أيقونات) --- */
+        .footer-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
+            padding: 12px 0; z-index: 1000;
+        }
+        .footer-nav::-webkit-scrollbar { display: none; }
+        .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #2D3E50; font-weight: bold; }
+        .active-line { width: 25px; height: 3px; background: #2D3E50; border-radius: 10px; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="home-logged-in.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+        <h1 class="page-title">Notifications</h1>
     </header>
 
-    <main class="container notification-container">
-        <div class="empty-state-card">
-            <h2 class="empty-title">No New Notifications</h2>
-            <p class="empty-subtitle">Smart reminders will appear here</p>
+    <div class="empty-notifications">
+        <div class="empty-card">
+            <div class="bell-icon-wrapper">
+                <i class="far fa-bell-slash"></i>
+            </div>
+            <h2>No New Notifications</h2>
+            <p>Smart reminders and course updates will appear here once they arrive.</p>
         </div>
-    </main>
+    </div>
 
-    <nav class="bottom-nav">
+    <nav class="footer-nav">
         <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
         <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
-        <a href="my-Path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
-        <a href="notifications.html" class="nav-item active"><i class="fas fa-bell"></i><span>Notifications</span>
-        <a href="profile.html" class="nav-link"><i class="fas fa-user"></i><span>Profile</span></a>
-        <a href="dashboard.html" class="nav-link"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
-        <a href="analysis.html" class="nav-link"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
-        <a href="students.html" class="nav-link"><i class="fas fa-users"></i><span>Students</span></a>
-        <a href="menu.html" class="nav-link"><i class="fas fa-bars"></i><span>Menu</span></a>
-    
-
-     
+        <a href="my-path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="notifications.html" class="nav-item active"><div class="active-line"></div><i class="fas fa-bell"></i><span>Alerts</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="analysis.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="students.html" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="menu.html" class="nav-item"><i class="fas fa-bars"></i><span>Menu</span></a>
     </nav>
 
 </body>
