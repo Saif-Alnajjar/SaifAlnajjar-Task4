@@ -9,44 +9,48 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 120px; }
 
-        /* الهيدر */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #fff; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #fff; border-bottom: 1px solid #f1f5f9; }
         .logo-box { width: 35px; height: 35px; background: #2D3E50; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: white; }
-        
-        .page-title { padding: 10px 20px; font-size: 24px; font-weight: bold; }
+        .page-title { padding: 20px; font-size: 24px; font-weight: bold; }
 
-        /* شبكة الإحصائيات */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px 20px; }
-        .stat-card { background: white; padding: 20px; border-radius: 15px; border: 1px solid #edf2f7; text-align: center; }
+        /* 1. شبكة الإحصائيات العلوية */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px 20px; }
+        .stat-card { background: white; padding: 20px; border-radius: 15px; border: 1px solid #edf2f7; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .stat-value { font-size: 20px; font-weight: bold; }
         .stat-label { font-size: 12px; color: #94a3b8; margin-top: 5px; }
 
-        /* الكروت العامة */
-        .chart-card { background: white; margin: 0 20px 20px; padding: 20px; border-radius: 15px; border: 1px solid #edf2f7; }
+        /* تنسيق الكروت الموحد */
+        .chart-card { background: white; margin: 0 20px 20px; padding: 20px; border-radius: 15px; border: 1px solid #edf2f7; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .dropdown-small { padding: 4px 8px; border-radius: 6px; border: 1px solid #edf2f7; font-size: 11px; }
+        .dropdown-small { padding: 4px 8px; border-radius: 6px; border: 1px solid #edf2f7; font-size: 11px; background: #fff; }
 
-        /* قسم Most Liked مع دعم الصور */
-        .liked-list { display: flex; flex-direction: column; gap: 10px; }
-        .liked-item { 
-            display: flex; align-items: center; gap: 12px; padding: 8px; 
-            border-radius: 15px; border: 1px solid #f1f5f9; 
-        }
-        .liked-img { width: 60px; height: 45px; border-radius: 8px; object-fit: cover; background: #eee; }
+        /* 2. مخطط الأرباح (Line Chart) */
+        .earning-value { color: #3182ce; font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .line-chart-svg { width: 100%; height: 100px; margin-top: 10px; }
+
+        /* 3. مخطط ساعات الذروة (Bar Chart) */
+        .bar-container { display: flex; align-items: flex-end; justify-content: space-between; height: 120px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+        .bar { width: 18px; background: #e2e8f0; border-radius: 4px 4px 0 0; transition: 0.3s; }
+        .bar.active { background: #2D3E50; } /* العمود الغامق كما في الصورة */
+        .bar-labels { display: flex; justify-content: space-between; margin-top: 10px; color: #94a3b8; font-size: 11px; }
+
+        /* 4. قائمة الكورسات (4 عناصر) */
+        .liked-item { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 15px; border: 1px solid #f1f5f9; margin-bottom: 10px; }
+        .liked-img { width: 60px; height: 40px; border-radius: 6px; object-fit: cover; background: #f8fbff; border: 1px solid #eee; }
         .liked-info { flex: 1; font-size: 13px; font-weight: 500; }
         .liked-percent { color: #3182ce; font-weight: bold; font-size: 12px; }
 
-        /* جدول Enrollment Details */
-        .enrollment-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .enrollment-table td { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #f7fafc; }
-        .td-label { color: #4A5568; }
-        .td-value { text-align: right; font-weight: bold; color: #2D3E50; }
+        /* 5. جدول البيانات */
+        .enroll-table { width: 100%; border-collapse: collapse; }
+        .enroll-table td { padding: 12px 0; font-size: 14px; border-bottom: 1px solid #f8fbff; }
+        .label-text { color: #64748b; }
+        .value-text { text-align: right; font-weight: bold; color: #2D3E50; }
 
         /* شريط التنقل السفلي */
         .footer-nav {
             position: fixed; bottom: 0; left: 0; width: 100%; background: white;
             display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
-            padding: 12px 0; z-index: 1000;
+            padding: 12px 0; z-index: 1000; -webkit-overflow-scrolling: touch;
         }
         .footer-nav::-webkit-scrollbar { display: none; }
         .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -72,42 +76,59 @@
     </div>
 
     <div class="chart-card">
+        <div class="chart-header"><h3>Earning</h3><select class="dropdown-small"><option>Last Week</option></select></div>
+        <div class="earning-value">$ 2,847</div>
+        <svg class="line-chart-svg" viewBox="0 0 400 100">
+            <path d="M0,80 Q50,20 100,70 T200,40 T300,60 T400,30" fill="none" stroke="#3182ce" stroke-width="3" />
+        </svg>
+    </div>
+
+    <div class="chart-card">
+        <div class="chart-header"><h3>Peak Learning Hours</h3><select class="dropdown-small"><option>Sunday</option></select></div>
+        <div class="bar-container">
+            <div class="bar" style="height: 30%;"></div>
+            <div class="bar" style="height: 50%;"></div>
+            <div class="bar" style="height: 20%;"></div>
+            <div class="bar" style="height: 40%;"></div>
+            <div class="bar" style="height: 15%;"></div>
+            <div class="bar active" style="height: 85%;"></div> <div class="bar" style="height: 60%;"></div>
+            <div class="bar" style="height: 45%;"></div>
+        </div>
+        <div class="bar-labels"><span>12pm</span><span>3pm</span><span>6pm</span><span>9pm</span></div>
+    </div>
+
+    <div class="chart-card">
         <h3 style="margin-bottom: 15px;">Most Liked | Dis-Liked</h3>
-        <div class="liked-list">
-            <div class="liked-item">
-                <img src="Images/IMG_5537.jpeg"alt="C1" class="liked-img">
-                <div class="liked-info">Course Title 1</div>
-                <div class="liked-percent">93%</div>
-            </div>
-            <div class="liked-item">
-                <img src="Images/IMG_5538.jpeg" alt="C2" class="liked-img">
-                <div class="liked-info">Course Title 1</div>
-                <div class="liked-percent">90%</div>
-            </div>
-            <div class="liked-item">
-                <img src="Images/IMG_5537.jpeg" alt="C3" class="liked-img">
-                <div class="liked-info">Course Title 1</div>
-                <div class="liked-percent">89%</div>
-            </div>
-            <div class="liked-item">
-                <img src="Images/IMG_5537.jpeg" alt="C4" class="liked-img">
-                <div class="liked-info">Course Title 1</div>
-                <div class="liked-percent">87%</div>
-            </div>
+        <div class="liked-item">
+            <img src="course1.jpg" class="liked-img">
+            <div class="liked-info">Course Title 1</div>
+            <div class="liked-percent">93%</div>
+        </div>
+        <div class="liked-item">
+            <img src="images/IMG_5537.jpeg" class="liked-img">
+            <div class="liked-info">Course Title 1</div>
+            <div class="liked-percent">90%</div>
+        </div>
+        <div class="liked-item">
+            <img src="images/IMG_5538.jpeg" class="liked-img">
+            <div class="liked-info">Course Title 1</div>
+            <div class="liked-percent">89%</div>
+        </div>
+        <div class="liked-item">
+            <img src="images/IMG_5537.jpeg" class="liked-img">
+            <div class="liked-info">Course Title 1</div>
+            <div class="liked-percent">87%</div>
         </div>
     </div>
 
     <div class="chart-card">
-        <div class="chart-header">
-            <h3>Enrollment Details</h3>
-            <select class="dropdown-small"><option>Sunday</option></select>
-        </div>
-        <table class="enrollment-table">
-            <tr><td class="td-label">Direct Website</td><td class="td-value">80</td></tr>
-            <tr><td class="td-label">Social Media Ads</td><td class="td-value">99</td></tr>
-            <tr><td class="td-label">Referrals Friends</td><td class="td-value">60</td></tr>
-            <tr><td class="td-label">Colleagues</td><td class="td-value">78</td></tr>
-            <tr><td class="td-label">Friends</td><td class="td-value">60</td></tr>
+        <div class="chart-header"><h3>Enrollment Details</h3><select class="dropdown-small"><option>Sunday</option></select></div>
+        <table class="enroll-table">
+            <tr><td class="label-text">Direct Website</td><td class="value-text">80</td></tr>
+            <tr><td class="label-text">Social Media Ads</td><td class="value-text">99</td></tr>
+            <tr><td class="label-text">Referrals Friends</td><td class="value-text">60</td></tr>
+            <tr><td class="label-text">Colleagues</td><td class="value-text">78</td></tr>
+            <tr><td class="label-text">Friends</td><td class="value-text">60</td></tr>
         </table>
     </div>
 
