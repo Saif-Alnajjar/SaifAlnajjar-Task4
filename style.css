@@ -2654,3 +2654,40 @@ nav ul {
     text-overflow: ellipsis !important;
 }
 
+/* --- تعديل قسم الهيرو لإضافة صورة خلفية عريضة --- */
+.hero-banner {
+    /* استبدلي الرابط أدناه بمسار صورتك العريضة */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), 
+                      url('images/IMG_5843.jpeg'); 
+    
+    background-size: cover !important;       /* لضمان تغطية كامل المساحة */
+    background-position: center center !important; /* لتوسيط الصورة */
+    background-repeat: no-repeat !important;
+    min-height: 450px !important;            /* ليعطي مساحة كافية للصورة */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;                 /* لإزالة أي إطارات قديمة */
+    margin-top: 0 !important;
+}
+
+/* تحسين تموضع النص فوق الصورة */
+.hero-text {
+    background: transparent !important;      /* إزالة أي خلفية رمادية قديمة */
+    text-align: center !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+.hero-text h1 {
+    font-size: 3rem !important;              /* تكبير العنوان ليناسب الخلفية الجديدة */
+    margin-bottom: 15px !important;
+    color: #2D3E50 !important;
+}
+
+.hero-text p {
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    color: #4a5568 !important;
+}
+    
