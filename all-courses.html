@@ -116,53 +116,50 @@
     </div>
 
     <div class="enrollment-section">
-        <h3 style="margin-bottom: 15px;">Course Enrollments</h3>
-        <div class="tabs">
-            <button class="tab-btn active">All Enrollments</button>
-            <button class="tab-btn">Pending</button>
-            <button class="tab-btn">In Progress</button>
-            <button class="tab-btn">Completed</button>
-        </div>
-        
-        <input type="text" class="search-bar" placeholder="Search Enrollment ID...">
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox"></th>
-                        <th>Enrollment ID</th>
-                        <th>Date</th>
-                        <th>Student Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td class="uid-text">UID446423</td>
-                        <td>2020/4/27</td>
-                        <td>John Mayer</td>
-                    </tr>
-                    <tr style="background: #fff5f5;"> <td><input type="checkbox"></td>
-                        <td class="uid-text">UID446423</td>
-                        <td>2020/4/27</td>
-                        <td>John Mayer</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td class="uid-text">UID446423</td>
-                        <td>2020/4/27</td>
-                        <td>John Mayer</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button class="btn-sm" style="flex:1; padding:12px">Cancel</button>
-            <button class="btn-sm btn-book" style="flex:1; background:#3182ce">Save</button>
-        </div>
+    <h3 style="margin-bottom: 15px;">Course Enrollments</h3>
+    <div class="tabs">
+        <button class="tab-btn active">All Enrollments</button>
+        <button class="tab-btn">Pending</button>
+        <button class="tab-btn">In Progress</button>
+        <button class="tab-btn">Completed</button>
+        <button class="tab-btn">Canceled</button>
     </div>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" class="search-bar" style="flex: 2; margin-bottom: 0;" placeholder="Search...">
+        <input type="text" class="search-bar" style="flex: 1; margin-bottom: 0;" placeholder="25/4/2020 to 25/4/2022">
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Enrollment ID</th>
+                    <th>Date</th>
+                    <th>Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr style="background: #f7fafc;"><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr style="background: #f7fafc;"><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr style="background: #fff5f5;"><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr> <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr style="background: #f7fafc;"><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+                <tr style="background: #fff5f5;"><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr> <tr><td><input type="checkbox"></td><td class="uid-text">UID446423</td><td>2020/4/27</td><td>John Mayer</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn-sm" style="flex:1; padding:12px; border-radius: 8px;">Cancel</button>
+        <button class="btn-sm btn-book" style="flex:1; background:#4299e1; border-radius: 8px;">Save</button>
+    </div>
+</div>
+
 
     <nav class="footer-nav">
         <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
