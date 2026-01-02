@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* الأساسيات الموحدة */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: #f8fbff; color: #2D3E50; padding-bottom: 120px; }
+
+        /* الهيدر */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #fff; }
+        .logo-box { width: 35px; height: 35px; background: #2D3E50; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: white; }
+        .page-title { padding: 10px 20px 0; font-size: 28px; font-weight: bold; }
+
+        /* التبويبات العلوية */
+        .menu-tabs { display: flex; gap: 15px; padding: 20px; overflow-x: auto; white-space: nowrap; }
+        .menu-tabs::-webkit-scrollbar { display: none; }
+        .tab-item { font-size: 13px; color: #94a3b8; text-decoration: none; padding: 8px 16px; border-radius: 20px; }
+        .tab-item.active { background: #2D3E50; color: white; font-weight: bold; }
+
+        /* قائمة الكورسات في المنيو */
+        .menu-list { padding: 0 20px; }
+        .menu-card { 
+            display: flex; background: white; border-radius: 15px; margin-bottom: 15px; 
+            border: 1px solid #edf2f7; overflow: hidden; position: relative;
+        }
+        .menu-card img { width: 110px; height: 90px; object-fit: cover; }
+        .card-content { padding: 12px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .card-content h4 { font-size: 15px; margin-bottom: 4px; }
+        .card-content p { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+        .price { font-size: 13px; font-weight: bold; }
+
+        /* ملصق الخصم */
+        .discount-badge { 
+            position: absolute; right: 10px; bottom: 10px; background: #fef08a; 
+            color: #854d0e; font-size: 10px; font-weight: bold; padding: 4px 10px; border-radius: 20px;
+        }
+
+        .view-more { text-align: center; padding: 10px; color: #64748b; font-size: 14px; cursor: pointer; }
+
+        /* أزرار التحكم السفلية */
+        .action-buttons { display: flex; gap: 10px; padding: 20px; justify-content: center; }
+        .btn-action { 
+            flex: 1; padding: 12px 5px; border-radius: 10px; border: none; 
+            background: #2D3E50; color: white; font-size: 11px; font-weight: bold; cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* شريط التنقل السفلي الموحد */
+        .footer-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; flex-wrap: nowrap; overflow-x: auto; border-top: 1px solid #eee;
+            padding: 12px 0; z-index: 1000;
+        }
+        .footer-nav::-webkit-scrollbar { display: none; }
+        .nav-item { flex: 0 0 75px; min-width: 75px; text-align: center; text-decoration: none; color: #94a3b8; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #2D3E50; font-weight: bold; }
+        .active-line { width: 25px; height: 3px; background: #2D3E50; border-radius: 10px; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-box"><i class="fas fa-layer-group"></i></div>
+        <div style="font-weight: bold;">Shifra</div>
+        <div style="font-size: 20px;"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <h1 class="page-title">Menu</h1>
+
+    <nav class="menu-tabs">
+        <a href="#" class="tab-item active">All Courses</a>
+        <a href="#" class="tab-item">Active Courses</a>
+        <a href="#" class="tab-item">Completed Courses</a>
+        <a href="#" class="tab-item">Reports</a>
+        <a href="#" class="tab-item">More <i class="fas fa-chevron-down"></i></a>
+    </nav>
+
+    <div class="menu-list">
+        <div class="menu-card">
+            <img src="images/IMG_5537.jpeg" alt="UX UI">
+            <div class="card-content">
+                <h4>UX UI</h4>
+                <p>Data analysis and ML basics</p>
+                <div class="price">$ 40.00</div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="images/IMG_5537.jpeg" alt="UX UI">
+            <div class="card-content">
+                <h4>UX UI</h4>
+                <p>Data analysis and ML basics</p>
+                <div class="price">$ 40.00</div>
+            </div>
+            <div class="discount-badge">40% OFF</div>
+        </div>
+
+        <div class="menu-card">
+            <img src="images/IMG_5537.jpeg" alt="UX UI">
+            <div class="card-content">
+                <h4>UX UI</h4>
+                <p>Data analysis and ML basics</p>
+                <div class="price">$ 40.00</div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="images/IMG_5537.jpeg" alt="UX UI">
+            <div class="card-content">
+                <h4>UX UI</h4>
+                <p>Data analysis and ML basics</p>
+                <div class="price">$ 40.00</div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <img src="images/IMG_5537.jpeg" alt="UX UI">
+            <div class="card-content">
+                <h4>UX UI</h4>
+                <p>Data analysis and ML basics</p>
+                <div class="price">$ 40.00</div>
+            </div>
+            <div class="discount-badge">40% OFF</div>
+        </div>
+    </div>
+
+    <div class="view-more">View more <i class="fas fa-chevron-down"></i></div>
+
+    <div class="action-buttons">
+        <button class="btn-action">Add New Course</button>
+        <button class="btn-action">Edit Course</button>
+        <button class="btn-action">Add Categorie</button>
+    </div>
+
+    <nav class="footer-nav">
+        <a href="home-logged-in.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="all-courses.html" class="nav-item"><i class="fas fa-book-open"></i><span>Courses</span></a>
+        <a href="my-path.html" class="nav-item"><i class="fas fa-route"></i><span>My Path</span></a>
+        <a href="notifications.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span></a>
+        <a href="profile.html" class="nav-item"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+        <a href="analysis.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Analysis</span></a>
+        <a href="students.html" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Students</span></a>
+        <a href="menu.html" class="nav-item active"><div class="active-line"></div><i class="fas fa-bars"></i><span>Menu</span></a>
+    </nav>
+
+</body>
+</html>
