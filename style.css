@@ -2655,53 +2655,24 @@ nav ul {
 }
 
 
-    /* الكود المضاف لوضع صورة خلفية عريضة خلف قسم الـ Hero */
-    .hero-banner {
-        /* استبدلي المسار بالصورة التي تريدينها */
-        background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
-                          url('images/IMG_5843.jpeg');
-        
-        background-size: cover !important;        /* تجعل الصورة تغطي كامل العرض */
-        background-position: center center !important; /* توسيط الصورة */
-        background-repeat: no-repeat !important;
-        min-height: 450px !important;             /* تعطي مساحة كافية لظهور الصورة */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border: none !important;                  /* إزالة أي إطارات قديمة */
-    }
-
-    /* لضمان ظهور النص بوضوح فوق الصورة */
-    .hero-text {
-        background: transparent !important;
-        text-align: center !important;
-    }
-
 /* --- إضافة صورة خلفية عريضة لقسم الهيرو --- */
 .hero-banner {
-    /* ملاحظة: تأكدي أن مسار الصورة صحيح بالنسبة لمكان ملف الـ css */
+    /* الحل هنا: إضافة ../ قبل كلمة images إذا كان ملف الـ CSS داخل مجلد فرعي */
     background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), 
-                      url('images/IMG_5843.jpeg'); 
+                      url('images/IMG_5843.jpeg') !important; 
     
-    background-size: cover !important;        /* تجعل الصورة ممتدة على كامل العرض */
-    background-position: center center !important; /* لضمان ظهور وسط الصورة */
+    background-size: cover !important;
+    background-position: center center !important;
     background-repeat: no-repeat !important;
-    min-height: 450px !important;             /* ليعطي مساحة فخمة للصورة خلف الكلام */
+    min-height: 450px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border: none !important;                  /* إزالة أي إطارات قديمة */
+    border: none !important;
 }
 
-/* لضمان تناسق النص فوق الصورة الجديدة */
+/* لضمان حذف أي تنسيقات قديمة تعيق ظهور الصورة */
 .hero-text {
-    background: transparent !important;       /* إلغاء أي خلفية سابقة للنص */
+    background: transparent !important;
     text-align: center !important;
-    max-width: 800px !important;
-    margin: 0 auto !important;
-}
-
-.hero-text h1 {
-    font-size: 3rem !important;               /* تكبير العنوان ليناسب الخلفية العريضة */
-    color: #2D3E50 !important;
 }
